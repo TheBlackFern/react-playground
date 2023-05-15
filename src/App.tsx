@@ -1,6 +1,7 @@
 import './App.css';
 import CounterButtons from './components/CounterButton';
 import NaughtsAndCrossesBoard from './components/NaughtsAndCrossesBoard';
+import RockPaperScissors from './components/RockPaperScissors';
 
 function App() {
   return (
@@ -8,6 +9,7 @@ function App() {
         <h1 className='text-4xl'>Playground!</h1>
         <CounterButtons />
         <NaughtsAndCrossesBoard />
+        <RockPaperScissors />
     </div>
   );
 }

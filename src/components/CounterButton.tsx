@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import Button from './basic/Button';
 
 
 function CounterButtons() {
@@ -16,16 +17,16 @@ function CounterButtons() {
     return (
         <div className='flex flex-col justify-center items-center sm:flex-row sm:justify-between sm:items-start'>
             <div className="flex">
-                <button type="button" className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm w-36 sm:mr-4 px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800" onClick={() => handleClick(1)}>
+                <Button additionalClasses="w-36 px-5 py-2.5 mr-2 mb-2" onClick={() => handleClick(1)}>
                 {count1} damn times
-                </button>
-                <button type="button" className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm w-36 sm:mr-4 px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800" onClick={() => handleClick(1)}>
+                </Button>
+                <Button additionalClasses="w-36 px-5 py-2.5 mr-2 mb-2" onClick={() => handleClick(1)}>
                 {count1} damn times
-                </button>
+                </Button>
             </div>
-            <button type="button" className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800 w-36" onClick={() => handleClick(2)}>
-            {count2} damn times
-            </button>
+            <Button additionalClasses="w-36 px-5 py-2.5 mr-2 mb-2" onClick={() => handleClick(2)}>
+                {count2} damn times
+            </Button>
         </div>
     );
   }
