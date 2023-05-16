@@ -1,42 +1,47 @@
-import { useEffect, useRef, useState } from 'react';
+import { useState } from 'react';
 import Button from './basic/Button';
 
 
 function RockPaperScissors() {
-    let [userGesture, setUserGesture] = useState("");
-    let [enemyGesture, setEnemyGesture] = useState("✊");
-    let displayField = useRef("Pick!");
+    const [userGesture, setUserGesture] = useState<string>();
+    const [enemyGesture, setEnemyGesture] = useState<string>();
+    const [result, setResult] = useState("");
 
     function handlePickGesture(sign: string) {
+        const gestures = ["✊", "✋", "✌️"];
+        const randomIndex = Math.floor(Math.random() * gestures.length);
+        const randomGesture = gestures[randomIndex];
+        setEnemyGesture(randomGesture);
         setUserGesture(sign);
+        getWinner(sign, randomGesture);
     }
 
-    useEffect(() => {
-        const topLine = `${userGesture} VS ${enemyGesture}`;
-        let bottomLine: string;
-        if (userGesture === "✊" && enemyGesture === "✋" ||
-        userGesture === "✋" && enemyGesture === "✌️" ||
-        userGesture === "✌️" && enemyGesture === "✊") {
-            bottomLine = "You lost!";
-        } else if (enemyGesture === "✊" && userGesture === "✋" ||
-        enemyGesture === "✋" && userGesture === "✌️" ||
-        enemyGesture === "✌️" && userGesture === "✊") {
-            bottomLine = "You Won!";
+    function getWinner(userSign: string, enemySign: string): void {
+        let newResult: string;
+        if (userSign === enemySign) {
+            newResult = "Draw!";
+        } else if (
+            (enemySign === "✊" && userSign === "✋") ||
+            (enemySign === "✋" && userSign === "✌️") ||
+            (enemySign === "✌️" && userSign === "✊")) {
+            newResult = "You won!";
         } else {
-            bottomLine = "Draw!";
+            newResult = "You lost!";
         }
-        displayField.current = `${topLine}\n${bottomLine}`;
-    }, [userGesture, enemyGesture]);
-
+        setResult(newResult);
+    };
+      
     return (
         <div className='flex flex-col items-center justify-center'>
             <div className='flex space-x-3'> 
-                <Button variant='alternative' additionalClasses='w-8 h-8' onClick={() => handlePickGesture("✊")}>✊</Button>
-                <Button variant='alternative' additionalClasses='w-8 h-8' onClick={() => handlePickGesture("✋")}>✋</Button>
-                <Button variant='alternative' additionalClasses='w-8 h-8' onClick={() => handlePickGesture("✌️")}>✌️</Button>
+                <Button variant='alternative' additionalClasses='text-xl w-12 h-12' onClick={() => handlePickGesture("✊")}>✊</Button>
+                <Button variant='alternative' additionalClasses='text-xl w-12 h-12' onClick={() => handlePickGesture("✋")}>✋</Button>
+                <Button variant='alternative' additionalClasses='text-xl w-12 h-12' onClick={() => handlePickGesture("✌️")}>✌️</Button>
             </div>
-            <div className='mt-4'>
-                { displayField.current }
+            <div className='flex flex-col items-center justify-center mt-4 space-y-3'>
+                <div className='text-xl'>
+                    { userGesture? `${ userGesture } VS ${ enemyGesture }` : "Pick!"} </div>
+                <div className='text-2xl'>{ result }</div>
             </div>
         </div>
     )
