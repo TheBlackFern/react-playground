@@ -11,7 +11,7 @@ const PolyrhytmBoard: React.FC<PolyrhytmBoard> = ({ velocity }) => {
     return (
         <>  
             {[...Array(circleNumber)].map((_, i) =>
-                <PolyrhytmCircle orbitRadius={(i + 1) * baseOrbitRadius} circleRadius={circleRadius} velocity={(circleNumber - i) * velocity}/>
+                <PolyrhytmCircle orbitRadius={(i + 1) * baseOrbitRadius} circleRadius={circleRadius} velocity={(circleNumber - i) * velocity} key={i}/>
             )}
         </>
   )
