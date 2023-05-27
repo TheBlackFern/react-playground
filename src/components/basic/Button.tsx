@@ -1,13 +1,13 @@
 import { MouseEventHandler, ReactNode } from "react";
 
-interface ButtonVariant {
+interface ButtonProps {
   additionalClasses?: string;
   variant?: "default" | "alternative" | "green" | "red";
   onClick: MouseEventHandler<HTMLButtonElement>;
   children: ReactNode;
 }
 
-const Button: React.FC<ButtonVariant> = ({
+const Button: React.FC<ButtonProps> = ({
   variant,
   additionalClasses,
   onClick,
