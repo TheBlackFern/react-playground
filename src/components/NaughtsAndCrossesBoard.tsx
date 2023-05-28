@@ -118,7 +118,7 @@ function NaughtsAndCrossesBoard() {
         className="absolute left-40 top-12 mt-1 h-10 w-10"
         onClick={resetBoard}
       >
-        <Restart />
+        <Restart className="h-7 w-7" />
       </Button>
     </div>
   );
