@@ -1,5 +1,6 @@
 import { useState } from "react";
-import Button from "./basic/Button";
+import TextTransition, { presets } from "react-text-transition";
+import Button from "./ui/Button";
 
 function RockPaperScissors() {
   const [userGesture, setUserGesture] = useState<string>();
@@ -35,32 +36,39 @@ function RockPaperScissors() {
     <div className="flex flex-col items-center justify-center">
       <div className="flex space-x-3">
         <Button
-          variant="alternative"
-          additionalClasses="text-xl w-12 h-12"
+          className="h-12 w-12 text-xl"
           onClick={() => handlePickGesture("✊")}
         >
           ✊
         </Button>
         <Button
-          variant="alternative"
-          additionalClasses="text-xl w-12 h-12"
+          className="h-12 w-12 text-xl"
           onClick={() => handlePickGesture("✋")}
         >
           ✋
         </Button>
         <Button
-          variant="alternative"
-          additionalClasses="text-xl w-12 h-12"
+          className="h-12 w-12 text-xl"
           onClick={() => handlePickGesture("✌️")}
         >
           ✌️
         </Button>
       </div>
-      <div className="mt-4 flex flex-col items-center justify-center space-y-3">
-        <div className="text-xl">
-          {userGesture ? `${userGesture} VS ${enemyGesture}` : "Pick!"}{" "}
-        </div>
-        <div className="text-2xl">{result}</div>
+      <div className="relative mb-10 mt-4 flex flex-col items-center justify-between space-y-3 text-center">
+        <TextTransition
+          className="text-xl"
+          springConfig={presets.slow}
+          inline={true}
+          translateValue="0%"
+          direction="up"
+        >
+          <div className="flex flex-row">
+            <p className="w-8">{userGesture ? `${userGesture}` : ""}</p>
+            <p className="w-8">{userGesture ? "VS" : "Pick!"}</p>
+            <p className="w-8">{userGesture ? `${enemyGesture}` : ""}</p>
+          </div>
+          {result}
+        </TextTransition>
       </div>
     </div>
   );

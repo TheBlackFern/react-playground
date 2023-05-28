@@ -1,5 +1,5 @@
 import { useState } from "react";
-import Button from "./basic/Button";
+import Button from "./ui/Button";
 
 function CounterButtons() {
   let [count1, setCount1] = useState(0);
@@ -17,20 +17,20 @@ function CounterButtons() {
     <div className="flex flex-col items-center justify-center sm:flex-row sm:items-start sm:justify-between">
       <div className="flex">
         <Button
-          additionalClasses="w-36 px-5 py-2.5 mr-2 mb-2"
+          className="mb-2 mr-2 w-36 px-5 py-2.5"
           onClick={() => handleClick(1)}
         >
           {count1} damn times
         </Button>
         <Button
-          additionalClasses="w-36 px-5 py-2.5 mr-2 mb-2"
+          className="mb-2 mr-2 w-36 px-5 py-2.5"
           onClick={() => handleClick(1)}
         >
           {count1} damn times
         </Button>
       </div>
       <Button
-        additionalClasses="w-36 px-5 py-2.5 mr-2 mb-2"
+        className="mb-2 mr-2 w-36 px-5 py-2.5"
         onClick={() => handleClick(2)}
       >
         {count2} damn times
