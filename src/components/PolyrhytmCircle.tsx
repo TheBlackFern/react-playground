@@ -47,18 +47,19 @@ soundMap.set(20, sound20);
 
 interface PolyrhytmCircleProps {
   elapsedTime: number;
+  lapTime: number;
   currentNumber: number;
   isPlaying: boolean;
 }
 
 const PolyrhytmCircle: React.FC<PolyrhytmCircleProps> = ({
   elapsedTime,
+  lapTime,
   currentNumber,
   isPlaying,
 }) => {
-  const totalTime = 120;
   const numberOfLaps = 50;
-  const baseVelocity = 360 / totalTime;
+  const baseVelocity = 360 / lapTime;
   const angularVelocity = (numberOfLaps - currentNumber) * baseVelocity;
   const baseOrbitRadius = 8;
   const circleRadius = 2;
@@ -107,7 +108,9 @@ const PolyrhytmCircle: React.FC<PolyrhytmCircleProps> = ({
     <div
       style={containerStyle}
       className={`absolute rounded-full border ${
-        isPlaying && lightUp ? "border-slate-400" : "border-gray-600"
+        isPlaying && lightUp
+          ? "border-slate-900 dark:border-slate-400"
+          : "border-slate-400 dark:border-gray-600"
       } left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 transition-all duration-300`}
     >
       <div
