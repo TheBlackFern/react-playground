@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import NaughtsAndCrossesTile from "./NaughtsAndCrossesTile";
-import Button from "./ui/Button";
+import { Button } from "./ui/Button";
 import { ReactComponent as Restart } from "../assets/svgs/restart.svg";
 
 function NaughtsAndCrossesBoard() {
@@ -57,8 +57,8 @@ function NaughtsAndCrossesBoard() {
   }
 
   return (
-    <div className="relative mr-2">
-      <div className="grid grid-cols-3">
+    <div className="relative mr-2 rounded-lg p-3">
+      <div className="relative grid grid-cols-3">
         <NaughtsAndCrossesTile
           value={values[0]}
           onTileClick={() => handleClick(0)}
@@ -113,13 +113,13 @@ function NaughtsAndCrossesBoard() {
           isWinning={winningRef.current[8]}
           gameOver={isGameOver}
         />
+        <Button
+          className="absolute left-40 top-12 mt-1 h-10 w-10"
+          onClick={resetBoard}
+        >
+          <Restart className="absolute h-6 w-6" />
+        </Button>
       </div>
-      <Button
-        className="absolute left-40 top-12 mt-1 h-10 w-10"
-        onClick={resetBoard}
-      >
-        <Restart className="h-7 w-7" />
-      </Button>
     </div>
   );
 }

@@ -1,59 +1,55 @@
-import { MouseEventHandler, ReactNode } from "react";
+import * as React from "react";
+import { Slot } from "@radix-ui/react-slot";
+import { cva, type VariantProps } from "class-variance-authority";
 
-interface ButtonProps {
-  className?: string;
-  variant?: "default" | "alternative" | "green" | "red";
-  onClick: MouseEventHandler<HTMLButtonElement>;
-  children: ReactNode;
-  disabled?: boolean;
+import { cn } from "../../lib/utils";
+
+const buttonVariants = cva(
+  "inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:opacity-50 disabled:pointer-events-none ring-offset-background",
+  {
+    variants: {
+      variant: {
+        default: "bg-primary text-primary-foreground hover:bg-primary/90",
+        destructive:
+          "bg-destructive text-destructive-foreground hover:bg-destructive/90",
+        outline:
+          "border border-input hover:bg-accent hover:text-accent-foreground",
+        secondary:
+          "bg-secondary text-secondary-foreground hover:bg-secondary/80",
+        ghost: "hover:bg-accent hover:text-accent-foreground",
+        link: "underline-offset-4 hover:underline text-primary",
+      },
+      size: {
+        default: "h-10 py-2 px-4",
+        sm: "h-9 px-3 rounded-md",
+        lg: "h-11 px-8 rounded-md",
+      },
+    },
+    defaultVariants: {
+      variant: "default",
+      size: "default",
+    },
+  }
+);
+
+export interface ButtonProps
+  extends React.ButtonHTMLAttributes<HTMLButtonElement>,
+    VariantProps<typeof buttonVariants> {
+  asChild?: boolean;
 }
 
-const Button: React.FC<ButtonProps> = ({
-  variant,
-  className,
-  onClick,
-  children,
-  disabled,
-}) => {
-  let style = "";
-  switch (variant) {
-    case "alternative":
-      style = `grid justify-center items-center text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-300 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 ${
-        disabled
-          ? ""
-          : "hover:bg-gray-100 hover:text-blue-700 dark:hover:text-white dark:hover:bg-gray-700"
-      }`;
-      break;
-    case "green":
-      style = `grid justify-center items-center focus:outline-none text-white bg-green-700 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm dark:bg-green-600 dark:focus:ring-green-800 ${
-        disabled ? "" : "hover:bg-green-800 dark:hover:bg-green-700"
-      }`;
-      break;
-    case "red":
-      style = `grid justify-center items-center focus:outline-none text-white bg-red-700 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm dark:bg-red-600 dark:hover:bg-red-700 ${
-        disabled ? "" : "hover:bg-red-800 dark:focus:ring-red-900"
-      }`;
-      break;
-    default:
-      style = `grid justify-center items-center text-white bg-blue-700 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm dark:bg-blue-600 focus:outline-none dark:focus:ring-blue-800 ${
-        disabled ? "" : "hover:bg-blue-800 dark:hover:bg-blue-700 "
-      }`;
-      break;
+const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
+  ({ className, variant, size, asChild = false, ...props }, ref) => {
+    const Comp = asChild ? Slot : "button";
+    return (
+      <Comp
+        className={cn(buttonVariants({ variant, size, className }))}
+        ref={ref}
+        {...props}
+      />
+    );
   }
-  return (
-    <button
-      type="button"
-      className={`${className} ${style}`}
-      onClick={onClick}
-      // @ts-ignore for some reason
-      // 'DetailedHTMLProps<ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement>'
-      // is not an HTMLButtonElement, so it has no "disabled" attribute.
-      // casting it as an HTMLButtonElement does even more harm.
-      disabled={disabled ? true : false}
-    >
-      {children}
-    </button>
-  );
-};
+);
+Button.displayName = "Button";
 
-export default Button;
+export { Button, buttonVariants };

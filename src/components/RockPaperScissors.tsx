@@ -1,6 +1,6 @@
 import { useState } from "react";
 import TextTransition, { presets } from "react-text-transition";
-import Button from "./ui/Button";
+import { Button } from "./ui/Button";
 
 function RockPaperScissors() {
   const [userGesture, setUserGesture] = useState<string>();

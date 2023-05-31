@@ -1,6 +1,7 @@
 import { useRef, useState } from "react";
 import PolyrhytmCircle from "./PolyrhytmCircle";
-import Button from "./ui/Button";
+import { Button } from "./ui/Button";
+import { Slider } from "./ui/Slider";
 
 const PolyrhytmBoard = () => {
   const [isPlaying, setIsPlaying] = useState(false);
@@ -24,8 +25,8 @@ const PolyrhytmBoard = () => {
     }
   }
 
-  const handleChangeSpeed = (e) => {
-    setLapTime(e.target.value);
+  const handleChangeSpeed = (val: number) => {
+    setLapTime(val);
   };
 
   return (
@@ -35,16 +36,14 @@ const PolyrhytmBoard = () => {
           {isPlaying ? "Pause" : "Start"}
         </Button>
         <div className="flex flex-row items-center justify-center space-x-1">
-          <input
-            id="steps-range"
-            type="range"
-            defaultValue={200}
-            onChange={handleChangeSpeed}
+          <Slider
+            defaultValue={[200]}
+            onValueChange={handleChangeSpeed}
             min={100}
             max={900}
             step={50}
-            className="h-2 w-24 cursor-pointer appearance-none rounded-lg bg-gray-200 dark:bg-gray-700"
-          ></input>
+            className="h-2 w-24 cursor-pointer appearance-none rounded-lg bg-primary dark:bg-primary"
+          ></Slider>
           <p>{`${lapTime} sec`}</p>
         </div>
       </div>

@@ -109,13 +109,13 @@ const PolyrhytmCircle: React.FC<PolyrhytmCircleProps> = ({
       style={containerStyle}
       className={`absolute rounded-full border ${
         isPlaying && lightUp
-          ? "border-slate-900 dark:border-slate-400"
-          : "border-slate-400 dark:border-gray-600"
+          ? "border-primary dark:border-primary"
+          : "border-secondary dark:border-secondary"
       } left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 transition-all duration-300`}
     >
       <div
         style={circleStyle}
-        className="absolute rounded-full bg-blue-700"
+        className="absolute rounded-full bg-primary"
       ></div>
     </div>
   );
