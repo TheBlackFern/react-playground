@@ -36,18 +36,21 @@ function RockPaperScissors() {
     <div className="flex flex-col items-center justify-center">
       <div className="flex space-x-3">
         <Button
+          variant="outline"
           className="h-12 w-12 text-xl"
           onClick={() => handlePickGesture("✊")}
         >
           ✊
         </Button>
         <Button
+          variant="outline"
           className="h-12 w-12 text-xl"
           onClick={() => handlePickGesture("✋")}
         >
           ✋
         </Button>
         <Button
+          variant="outline"
           className="h-12 w-12 text-xl"
           onClick={() => handlePickGesture("✌️")}
         >

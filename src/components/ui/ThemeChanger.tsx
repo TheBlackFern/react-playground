@@ -24,7 +24,7 @@ const ThemeChanger: React.FC<ThemeChangerProps> = ({
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
         <Button
-          variant="ghost"
+          variant="outline"
           size="sm"
           className={`${className} grid h-8 w-8 place-content-center`}
         >

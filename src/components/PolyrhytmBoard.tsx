@@ -42,9 +42,14 @@ const PolyrhytmBoard = () => {
             min={100}
             max={900}
             step={50}
-            className="h-2 w-24 cursor-pointer appearance-none rounded-lg bg-primary dark:bg-primary"
+            className="h-2 w-24 cursor-pointer appearance-none rounded-lg bg-destructive text-destructive dark:bg-destructive"
           ></Slider>
-          <p>{`${lapTime} sec`}</p>
+          <p className="relative">
+            {`${lapTime} sec`}
+            <p className="absolute w-24 text-xs text-destructive">
+              WIP doesn't work!
+            </p>
+          </p>
         </div>
       </div>
       <div className="relative h-[22rem]">

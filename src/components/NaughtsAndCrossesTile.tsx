@@ -18,8 +18,8 @@ const NaughtsAndCrossesTile: React.FC<tileProps> = ({
 }) => {
   return (
     <Button
-      variant="secondary"
-      className={`h-12 w-12 border-blue-800 text-sm font-medium transition-all duration-300 ${
+      variant="outline"
+      className={`h-12 w-12 text-sm font-medium transition-all duration-300 ${
         isWinning
           ? "text-destructive dark:text-destructive"
           : "text-primary dark:text-primary"
