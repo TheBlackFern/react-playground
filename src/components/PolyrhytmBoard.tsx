@@ -25,8 +25,8 @@ const PolyrhytmBoard = () => {
     }
   }
 
-  const handleChangeSpeed = (val: number) => {
-    setLapTime(val);
+  const handleChangeSpeed = (val: number[]) => {
+    setLapTime(val[0]);
   };
 
   return (

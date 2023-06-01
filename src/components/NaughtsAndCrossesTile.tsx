@@ -21,7 +21,7 @@ const NaughtsAndCrossesTile: React.FC<tileProps> = ({
       variant="secondary"
       className={`h-12 w-12 border-blue-800 text-sm font-medium transition-all duration-300 ${
         isWinning
-          ? "text-rose-700 dark:text-rose-500"
+          ? "text-destructive dark:text-destructive"
           : "text-primary dark:text-primary"
       }`}
       onClick={onTileClick}
