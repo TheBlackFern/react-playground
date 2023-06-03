@@ -5,11 +5,16 @@ import { Slider } from "./ui/Slider";
 
 const PolyrhytmBoard = () => {
   const [isPlaying, setIsPlaying] = useState(false);
+
+  // at the end of the day, we don't use it for time measurement,
+  // we use it to synchronise all circles: this way we have just one
+  // source of truth, when elapsed time changes, they all update
+  // simulataneously as opposed to one by one, causing desync
   const [elapsedTime, setElapsedTime] = useState(0);
-  const [lapTime, setLapTime] = useState(200);
+  const [syncTime, setSyncTime] = useState(200);
   const timer = useRef<number>();
 
-  const renderTime = 15;
+  const renderTime = 15; // ~ 60 fps
   const totalNumber = 21;
 
   // all circles get their elapsed time from one source of truth,
@@ -26,7 +31,7 @@ const PolyrhytmBoard = () => {
   }
 
   const handleChangeSpeed = (val: number[]) => {
-    setLapTime(val[0]);
+    setSyncTime(val[0]);
   };
 
   return (
@@ -44,12 +49,7 @@ const PolyrhytmBoard = () => {
             step={50}
             className="h-2 w-24 cursor-pointer appearance-none rounded-lg bg-destructive text-destructive dark:bg-destructive"
           ></Slider>
-          <p className="relative">
-            {`${lapTime} sec`}
-            <p className="absolute w-24 text-xs text-destructive">
-              WIP doesn't work!
-            </p>
-          </p>
+          <p className="relative">{`${syncTime} sec`}</p>
         </div>
       </div>
       <div className="relative h-[22rem]">
@@ -59,7 +59,7 @@ const PolyrhytmBoard = () => {
               elapsedTime={elapsedTime}
               currentNumber={i}
               isPlaying={isPlaying}
-              lapTime={lapTime}
+              syncTime={syncTime}
               key={i}
             />
           ))}

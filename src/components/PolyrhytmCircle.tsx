@@ -1,5 +1,5 @@
-import { useState, useEffect } from "react";
 import useSound from "use-sound";
+import { useCircleAnimation, useRotation } from "../lib/utils";
 import sound0 from "../assets/sounds/(0).wav";
 import sound1 from "../assets/sounds/(1).wav";
 import sound2 from "../assets/sounds/(2).wav";
@@ -47,42 +47,30 @@ soundMap.set(20, sound20);
 
 interface PolyrhytmCircleProps {
   elapsedTime: number;
-  lapTime: number;
+  syncTime: number;
   currentNumber: number;
   isPlaying: boolean;
 }
 
 const PolyrhytmCircle: React.FC<PolyrhytmCircleProps> = ({
   elapsedTime,
-  lapTime,
+  syncTime,
   currentNumber,
   isPlaying,
 }) => {
-  const numberOfLaps = 50;
-  const baseVelocity = 360 / lapTime;
-  const angularVelocity = (numberOfLaps - currentNumber) * baseVelocity;
+  const numberOfLaps = 50; // just a nice number
+
+  // baseVelocity is when you complete 1 circle in syncTime
+  const baseAngularVelocity = 360 / syncTime;
+
+  // and this is the real angular velocity for this particular circle
+  const angularVelocity = (numberOfLaps - currentNumber) * baseAngularVelocity;
   const baseOrbitRadius = 8;
   const circleRadius = 2;
   const orbitRadius = (currentNumber + 1) * baseOrbitRadius;
   const [play] = useSound(soundMap.get(currentNumber));
-  const angle = (elapsedTime * angularVelocity) / 1000;
-  const revolutionPeriod = (360 * 1000) / angularVelocity;
-
-  const [nextRevolution, setNextRevolution] = useState(revolutionPeriod);
-  const [lightUp, setLightUp] = useState(false);
-
-  // this is the most reliable solution as when time is stopped, we don't get lights and
-  // sounds firing but at the same time we are spot on with the timing
-  useEffect(() => {
-    if (elapsedTime >= nextRevolution) {
-      play();
-      setLightUp(true);
-      setTimeout(() => {
-        setLightUp(false);
-      }, 400);
-      setNextRevolution((prev) => (prev += revolutionPeriod));
-    }
-  }, [elapsedTime]);
+  const [angle] = useRotation(elapsedTime, angularVelocity);
+  const [lightUp] = useCircleAnimation(angle, play);
 
   // Tailwind renders class components once upon bulding, so these wouldn't work dinamically
   // like w-[`${{orbitRadius * 2 - circleRadius * 2}`px], which is a shame.
