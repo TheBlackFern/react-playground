@@ -35,12 +35,10 @@ const PolyrhytmBoard = () => {
   };
 
   return (
-    <div className="flex flex-col items-center">
-      <div className="z-10 flex flex-row items-center justify-center space-x-3">
-        <Button onClick={handleClick} className="w-12 py-1">
-          {isPlaying ? "Pause" : "Start"}
-        </Button>
-        <div className="flex flex-row items-center justify-center space-x-1">
+    <div className="mt-4 flex flex-col items-center">
+      <div className="z-10 flex flex-col items-center justify-center space-y-3">
+        <div className="w-42 relative flex flex-row items-center justify-center space-x-1">
+          <p className="pb-1">Full sync time</p>
           <Slider
             defaultValue={[200]}
             onValueChange={handleChangeSpeed}
@@ -49,8 +47,11 @@ const PolyrhytmBoard = () => {
             step={50}
             className="h-2 w-24 cursor-pointer appearance-none rounded-lg bg-destructive text-destructive dark:bg-destructive"
           ></Slider>
-          <p className="relative">{`${syncTime} sec`}</p>
+          <p>{`${syncTime} sec`}</p>
         </div>
+        <Button onClick={handleClick} className="h-6 w-12 py-3">
+          {isPlaying ? "Pause" : "Start"}
+        </Button>
       </div>
       <div className="relative h-[22rem]">
         <div className="absolute top-[52%]">

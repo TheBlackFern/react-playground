@@ -1,6 +1,7 @@
 import { clsx, type ClassValue } from "clsx";
 import { useEffect, useState } from "react";
 import { twMerge } from "tailwind-merge";
+import { PlayFunction } from "use-sound/dist/types";
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
@@ -70,10 +71,10 @@ export function useRotation(
  */
 export function useCircleAnimation(
   angle: number,
-  play: any
+  play: PlayFunction
 ): [lightUp: boolean] {
-  // this is the angle of the next full revolution, so 360, 720, 1080...
-  const [nextFullRevTime, setNextFullRevTime] = useState(360);
+  // this is the angle of the next full revolution, so 180, 360, 540, 720, 1080...
+  const [nextFullRevTime, setNextFullRevTime] = useState(180);
   const [lightUp, setLightUp] = useState(false);
 
   // This is the most reliable solution as when time is stopped we don't get lights and
@@ -86,7 +87,7 @@ export function useCircleAnimation(
       setTimeout(() => {
         setLightUp(false);
       }, 400);
-      setNextFullRevTime((prev) => prev + 360);
+      setNextFullRevTime((prev) => prev + 180);
     }
   }, [angle]);
 

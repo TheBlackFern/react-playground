@@ -1,49 +1,5 @@
 import useSound from "use-sound";
 import { useCircleAnimation, useRotation } from "../lib/utils";
-import sound0 from "../assets/sounds/(0).wav";
-import sound1 from "../assets/sounds/(1).wav";
-import sound2 from "../assets/sounds/(2).wav";
-import sound3 from "../assets/sounds/(3).wav";
-import sound4 from "../assets/sounds/(4).wav";
-import sound5 from "../assets/sounds/(5).wav";
-import sound6 from "../assets/sounds/(6).wav";
-import sound7 from "../assets/sounds/(7).wav";
-import sound8 from "../assets/sounds/(8).wav";
-import sound9 from "../assets/sounds/(9).wav";
-import sound10 from "../assets/sounds/(10).wav";
-import sound11 from "../assets/sounds/(11).wav";
-import sound12 from "../assets/sounds/(12).wav";
-import sound13 from "../assets/sounds/(13).wav";
-import sound14 from "../assets/sounds/(14).wav";
-import sound15 from "../assets/sounds/(15).wav";
-import sound16 from "../assets/sounds/(16).wav";
-import sound17 from "../assets/sounds/(17).wav";
-import sound18 from "../assets/sounds/(18).wav";
-import sound19 from "../assets/sounds/(19).wav";
-import sound20 from "../assets/sounds/(20).wav";
-
-const soundMap = new Map<number, string>();
-soundMap.set(0, sound0);
-soundMap.set(1, sound1);
-soundMap.set(2, sound2);
-soundMap.set(3, sound3);
-soundMap.set(4, sound4);
-soundMap.set(5, sound5);
-soundMap.set(6, sound6);
-soundMap.set(7, sound7);
-soundMap.set(8, sound8);
-soundMap.set(9, sound9);
-soundMap.set(10, sound10);
-soundMap.set(11, sound11);
-soundMap.set(12, sound12);
-soundMap.set(13, sound13);
-soundMap.set(14, sound14);
-soundMap.set(15, sound15);
-soundMap.set(16, sound16);
-soundMap.set(17, sound17);
-soundMap.set(18, sound18);
-soundMap.set(19, sound19);
-soundMap.set(20, sound20);
 
 interface PolyrhytmCircleProps {
   elapsedTime: number;
@@ -68,7 +24,9 @@ const PolyrhytmCircle: React.FC<PolyrhytmCircleProps> = ({
   const baseOrbitRadius = 8;
   const circleRadius = 2;
   const orbitRadius = (currentNumber + 1) * baseOrbitRadius;
-  const [play] = useSound(soundMap.get(currentNumber));
+  const [play] = useSound(
+    `/react-playground/src/assets/sounds/vibro (${currentNumber}).wav`
+  );
   const [angle] = useRotation(elapsedTime, angularVelocity);
   const [lightUp] = useCircleAnimation(angle, play);
 

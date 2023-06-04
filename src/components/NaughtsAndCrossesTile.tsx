@@ -1,6 +1,5 @@
 import { MouseEventHandler } from "react";
-import { ReactComponent as Naught } from "../assets/svgs/naught.svg";
-import { ReactComponent as Cross } from "../assets/svgs/cross.svg";
+import { Circle, X } from "lucide-react";
 import { Button } from "./ui/Button";
 
 interface tileProps {
@@ -19,23 +18,33 @@ const NaughtsAndCrossesTile: React.FC<tileProps> = ({
   return (
     <Button
       variant="outline"
-      className={`h-12 w-12 text-sm font-medium transition-all duration-300 ${
-        isWinning
-          ? "text-destructive dark:text-destructive"
-          : "text-primary dark:text-primary"
-      }`}
+      className="h-12 w-12 text-sm font-medium transition-all duration-300"
       onClick={onTileClick}
-      isDisabled={gameOver ? true : false}
+      disabled={gameOver ? true : false}
     >
-      <Cross
+      <X
         className={`${
           value === "X" ? "scale-100" : "scale-0"
-        } absolute h-8 w-8 transition-all duration-300`}
+        } absolute h-8 w-8 transition-all duration-300 ${
+          gameOver
+            ? isWinning
+              ? "text-red-500 dark:text-red-700"
+              : "opacity-30"
+            : "text-primary opacity-100 dark:text-primary"
+        }`}
+        strokeWidth={1}
       />
-      <Naught
-        className={`${
+      <Circle
+        className={`absolute h-7 w-7 transition-all duration-300 ${
           value === "O" ? "scale-100" : "scale-0"
-        } absolute h-8 w-8 transition-all duration-300`}
+        }  ${
+          gameOver
+            ? isWinning
+              ? "text-red-500 dark:text-red-700"
+              : "opacity-30"
+            : "text-primary opacity-100 dark:text-primary"
+        }`}
+        strokeWidth={1}
       />
     </Button>
   );

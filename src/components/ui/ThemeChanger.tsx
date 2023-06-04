@@ -5,13 +5,11 @@ import {
   DropdownMenuTrigger,
 } from "./Dropdown";
 import { Button } from "./Button";
-import { ReactComponent as Sun } from "../../assets/svgs/sun.svg";
-import { ReactComponent as Moon } from "../../assets/svgs/moon.svg";
-import { ReactComponent as Computer } from "../../assets/svgs/computer.svg";
+import { Sun, Moon, Monitor } from "lucide-react";
 
 interface ThemeChangerProps {
   theme: string;
-  className: string;
+  className?: string;
   setThemeStrategy: (theme: string) => void;
 }
 
@@ -28,11 +26,15 @@ const ThemeChanger: React.FC<ThemeChangerProps> = ({
           size="sm"
           className={`${className} grid h-8 w-8 place-content-center`}
         >
-          {theme === "light" ? <Sun /> : <Moon />}
+          {theme === "light" ? (
+            <Sun className="h-6 w-6" strokeWidth={1.5} />
+          ) : (
+            <Moon className="h-6 w-6" strokeWidth={1.5} />
+          )}
           <span className="sr-only">Toggle theme</span>
         </Button>
       </DropdownMenuTrigger>
-      <DropdownMenuContent align="end">
+      <DropdownMenuContent align="end" className={theme}>
         <DropdownMenuItem onClick={() => setThemeStrategy("light")}>
           <Sun className="mr-2 h-4 w-4" />
           <span>Light</span>
@@ -42,7 +44,7 @@ const ThemeChanger: React.FC<ThemeChangerProps> = ({
           <span>Dark</span>
         </DropdownMenuItem>
         <DropdownMenuItem onClick={() => setThemeStrategy("system")}>
-          <Computer className="mr-2 h-4 w-4" />
+          <Monitor className="mr-2 h-4 w-4" />
           <span>System</span>
         </DropdownMenuItem>
       </DropdownMenuContent>
