@@ -1,5 +1,6 @@
 import useSound from "use-sound";
 import { useCircleAnimation, useRotation } from "../lib/utils";
+import vibroMap from "../assets/assets";
 
 interface PolyrhytmCircleProps {
   elapsedTime: number;
@@ -25,7 +26,8 @@ const PolyrhytmCircle: React.FC<PolyrhytmCircleProps> = ({
   const circleRadius = 2;
   const orbitRadius = (currentNumber + 1) * baseOrbitRadius;
   const [play] = useSound(
-    `/react-playground/src/assets/sounds/vibro (${currentNumber}).wav`
+    // `/react-playground/src/assets/sounds/vibro (${currentNumber}).wav`
+    vibroMap.get(currentNumber) ?? ""
   );
   const [angle] = useRotation(elapsedTime, angularVelocity);
   const [lightUp] = useCircleAnimation(angle, play);

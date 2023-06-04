@@ -16,7 +16,7 @@ function App() {
       document.body.classList.remove("dark");
     }
   }, [theme]);
-  console.log(theme);
+
   return (
     <>
       <nav className="grid h-12 w-full grid-flow-col place-items-center justify-items-stretch space-x-4 border-b bg-background px-6 md:space-x-6 lg:px-12">
