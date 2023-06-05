@@ -7,6 +7,7 @@ interface PolyrhytmCircleProps {
   syncTime: number;
   currentNumber: number;
   isPlaying: boolean;
+  volume: number;
 }
 
 const PolyrhytmCircle: React.FC<PolyrhytmCircleProps> = ({
@@ -14,6 +15,7 @@ const PolyrhytmCircle: React.FC<PolyrhytmCircleProps> = ({
   syncTime,
   currentNumber,
   isPlaying,
+  volume,
 }) => {
   const numberOfLaps = 50; // just a nice number
 
@@ -27,7 +29,10 @@ const PolyrhytmCircle: React.FC<PolyrhytmCircleProps> = ({
   const orbitRadius = (currentNumber + 1) * baseOrbitRadius;
   const [play] = useSound(
     // `/react-playground/src/assets/sounds/vibro (${currentNumber}).wav`
-    vibroMap.get(currentNumber) ?? ""
+    vibroMap.get(currentNumber) ?? "",
+    {
+      volume: volume,
+    }
   );
   const [angle] = useRotation(elapsedTime, angularVelocity);
   const [lightUp] = useCircleAnimation(angle, play);
