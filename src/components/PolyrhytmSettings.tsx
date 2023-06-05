@@ -20,11 +20,9 @@ const PolyrhytmSettings: React.FC<PolyrhytmSettingsProps> = ({
   syncTime,
 }) => {
   return (
-    <div className="z-10 grid w-[13rem] grid-flow-row grid-cols-5 place-items-center gap-y-1">
+    <div className="z-10 grid w-52 grid-flow-row grid-cols-5 place-items-center gap-y-1">
       {/* w-[4.3rem] is just ridiculous, has to be a better way */}
-      <p className="col-span-1 w-[4.3rem] place-self-end text-right">
-        Sync time
-      </p>
+      <p className="col-span-1 w-18 place-self-end text-right">Sync time</p>
       <Slider
         defaultValue={[600]}
         onValueChange={handleChangeSpeed}
