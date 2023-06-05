@@ -30,7 +30,7 @@ function App() {
       </nav>
       <div className="relative flex h-full flex-col justify-center bg-background px-5 pt-5 text-primary transition-all duration-300 dark:bg-background dark:text-primary md:flex-row md:space-x-16 lg:space-x-28 xl:space-x-40">
         <div className="flex flex-col items-center">
-          <h1 className="w-48 border-b pb-3 text-center text-xl">
+          <h1 className="w-52 border-b pb-3 text-center text-xl">
             Naughts and crosses!
           </h1>
           <NaughtsAndCrossesBoard />
