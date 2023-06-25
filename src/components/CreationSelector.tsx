@@ -41,7 +41,7 @@ const CreationSelector: React.FC<CreationSelectorProps> = ({
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button className={`${className} text-base`}>Components</Button>
+        <Button className={`${className}`}>Components</Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent className="w-56 text-center">
         <DropdownMenuLabel>Render Components</DropdownMenuLabel>

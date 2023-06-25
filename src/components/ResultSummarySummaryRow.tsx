@@ -2,6 +2,8 @@ import Reaction from "../assets/images/icon-reaction.svg";
 import Memory from "../assets/images/icon-memory.svg";
 import Verbal from "../assets/images/icon-verbal.svg";
 import Visual from "../assets/images/icon-visual.svg";
+import { useState } from "react";
+import { Skeleton } from "./ui/Skeleton";
 
 const svgMap = new Map<string, string>();
 svgMap.set("reaction", Reaction);
@@ -28,6 +30,8 @@ const ResultSummarySummaryRow: React.FC<ResultSummarySummaryRowProps> = ({
   title,
   score,
 }) => {
+  const [isLoading, setIsLoading] = useState(true);
+
   return (
     <div className="my-1 flex w-full rounded-lg bg-[#ebf1ff] px-2 py-2.5  text-xs dark:bg-[#000f34]">
       <div
@@ -38,7 +42,13 @@ const ResultSummarySummaryRow: React.FC<ResultSummarySummaryRowProps> = ({
       ${title === "visual" && "text-[#1125d4] dark:text-[#3347ef]"}
       `}
       >
-        <img src={svgMap.get(title)} alt="icon" className="w-3" />
+        <img
+          src={svgMap.get(title)}
+          alt="icon"
+          className={`${isLoading ? "hidden" : "h-3 w-3"}`}
+          onLoad={() => setIsLoading(false)}
+        />
+        {isLoading && <Skeleton className="h-4 w-4" />}
         <p>{title.charAt(0).toUpperCase() + title.slice(1)}</p>
       </div>
       <span className="ml-auto flex flex-row gap-1 self-end text-[10px] font-bold text-[#303b5a] dark:text-[#a6b0cf]">

@@ -10,7 +10,7 @@ const ResultSummarySummary = () => {
       <ResultSummarySummaryRow title="memory" score={92} />
       <ResultSummarySummaryRow title="verbal" score={61} />
       <ResultSummarySummaryRow title="visual" score={72} />
-      <button className="mb-3 mt-2 w-full rounded-3xl bg-[#303b5a] py-2.5 text-[10px] font-bold text-white/[0.8] dark:bg-[#c3cbdf] dark:text-black/[0.8]">
+      <button className="mb-3 mt-2 w-full rounded-3xl bg-[#303b5a] py-2.5 text-[10px] font-bold text-white/[0.8] dark:bg-[#c3cbdf] dark:text-black">
         Continue
       </button>
     </div>
