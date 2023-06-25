@@ -14,7 +14,7 @@ const QRCode = () => {
   const [isLoading, setIsLoading] = useState(true);
 
   return (
-    <div className="flex h-[500px] w-80 flex-col items-center justify-center rounded-xl border p-3 text-center leading-tight">
+    <div className="flex h-[500px] w-80 flex-col items-center justify-center rounded-xl border p-3 text-center leading-tight shadow-md">
       <img
         className="mb-6 rounded-xl"
         src={qrcode}

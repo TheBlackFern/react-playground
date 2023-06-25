@@ -28,7 +28,7 @@ const ResultSummaryResult = () => {
       <p className="mb-1.5 text-sm font-semibold text-white md:text-base">
         Great
       </p>
-      <p className="text-[9px] text-[#c8c7ff]">
+      <p className="px-2 text-[9px] text-[#c8c7ff]">
         You scored higher than 65% of the people who have taken these tests.
       </p>
     </div>

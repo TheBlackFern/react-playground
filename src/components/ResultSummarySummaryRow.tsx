@@ -45,7 +45,7 @@ const ResultSummarySummaryRow: React.FC<ResultSummarySummaryRowProps> = ({
         <img
           src={svgMap.get(title)}
           alt="icon"
-          className={`${isLoading ? "hidden" : "h-3 w-3"}`}
+          className={`${isLoading ? "hidden" : "mt-0.5 h-3.5 w-3.5"}`}
           onLoad={() => setIsLoading(false)}
         />
         {isLoading && <Skeleton className="h-4 w-4" />}
