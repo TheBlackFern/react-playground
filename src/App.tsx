@@ -1,13 +1,22 @@
-import NaughtsAndCrossesBoard from "./components/NaughtsAndCrossesBoard";
-import RockPaperScissors from "./components/RockPaperScissors";
-import PolyrhytmBoard from "./components/PolyrhytmBoard";
 import ThemeChanger from "./components/ui/ThemeChanger";
+import Creation from "./components/ui/Creation";
+// import NaughtsAndCrossesBoard from "./components/NaughtsAndCrossesBoard";
+// import RockPaperScissors from "./components/RockPaperScissors";
+// import PolyrhytmBoard from "./components/PolyrhytmBoard";
+// import QRCode from "./components/QRCode";
+import ResultSummary from "./components/ResultSummary";
 import { Swords } from "lucide-react";
 import { useTheme } from "./lib/utils";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import CreationSelector from "./components/CreationSelector";
+import NaughtsAndCrossesBoard from "./components/NaughtsAndCrossesBoard";
+import PolyrhytmBoard from "./components/PolyrhytmBoard";
+import RockPaperScissors from "./components/RockPaperScissors";
+import QRCode from "./components/QRCode";
 
 function App() {
   const [theme, setTheme] = useTheme();
+  const [shownComponents, setShownComponents] = useState(["poly"]);
 
   useEffect(() => {
     if (theme === "dark") {
@@ -19,35 +28,55 @@ function App() {
 
   return (
     <>
-      <nav className="grid h-12 w-full grid-flow-col place-items-center justify-items-stretch space-x-4 border-b bg-background px-6 md:space-x-6 lg:px-12">
-        <div className="flex flex-row items-center space-x-1">
-          <Swords />
-          <h1 className="text-xl text-primary">Playground!</h1>
+      <nav className="flex h-16 w-full flex-row items-center space-x-4 border-b bg-background px-6 md:space-x-6 lg:px-12">
+        <div className="flex flex-row items-center space-x-2">
+          <Swords className="h-8 w-8" />
+          <h1 className="mb-1 text-3xl text-primary">Playground!</h1>
         </div>
-        <div className="ml-auto justify-center justify-self-end">
-          <ThemeChanger theme={theme} setThemeStrategy={setTheme} />
+        <CreationSelector
+          setShownComponents={setShownComponents}
+          className=""
+        />
+        <div className="w-full">
+          <ThemeChanger
+            className="ml-auto justify-self-end"
+            theme={theme}
+            setThemeStrategy={setTheme}
+          />
         </div>
       </nav>
-      <div className="relative flex h-full flex-col justify-center bg-background px-5 pt-5 text-primary transition-all duration-300 dark:bg-background dark:text-primary md:flex-row md:space-x-16 lg:space-x-28 xl:space-x-40">
-        <div className="flex flex-col items-center">
-          <h1 className="w-52 border-b pb-3 text-center text-xl">
-            Naughts and crosses!
-          </h1>
-          <NaughtsAndCrossesBoard />
-        </div>
-        <div className="flex flex-col items-center text-center">
-          <h1 className="w-48 border-b pb-3 text-center text-xl">
-            Polyrithms!
-          </h1>
-          <PolyrhytmBoard />
-        </div>
-        <div className="flex flex-col items-center">
-          <h1 className="w-48 border-b pb-3 text-center text-xl">
-            Rock-paper-scissors!
-          </h1>
-          <RockPaperScissors />
-        </div>
-      </div>
+      <main className="relative mb-10 flex h-full flex-col flex-wrap justify-center bg-background px-5 pt-5 text-primary transition-all duration-300 dark:bg-background dark:text-primary md:flex-row md:space-x-16 lg:space-x-28 xl:space-x-40">
+        {shownComponents.includes("ttt") && (
+          <Creation name="Naughts and crosses">
+            <NaughtsAndCrossesBoard />
+          </Creation>
+        )}
+        {shownComponents.includes("poly") && (
+          <Creation name="Polyrhytms">
+            <PolyrhytmBoard />
+          </Creation>
+        )}
+        {shownComponents.includes("rpc") && (
+          <Creation name="Rock-Paper-Scissors">
+            <RockPaperScissors />
+          </Creation>
+        )}
+        {shownComponents.includes("qr") && (
+          <Creation name="QR Code">
+            <QRCode />
+          </Creation>
+        )}
+        {shownComponents.includes("results") && (
+          <Creation name="Result Summary">
+            <ResultSummary />
+          </Creation>
+        )}
+        {shownComponents.includes("results") && (
+          <Creation name="Result Summary">
+            <ResultSummary />
+          </Creation>
+        )}
+      </main>
     </>
   );
 }

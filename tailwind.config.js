@@ -70,6 +70,10 @@ export default {
         18: "72px",
         17: "68px",
       },
+      fontFamily: {
+        outfit: ["Outfit", "sans-serif"],
+        hanken: ["Hanken Grotesk", "sans-serif"],
+      },
     },
   },
   plugins: [require("tailwindcss-animate")],
