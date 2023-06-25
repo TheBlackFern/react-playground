@@ -23,7 +23,7 @@ const CreationSelector: React.FC<CreationSelectorProps> = ({
   setShownComponents,
 }) => {
   const [showTicTacToe, setShowTicTackToe] = useState<Checked>(false);
-  const [showPolyrhytms, setShowPolyrhytms] = useState<Checked>(true);
+  const [showPolyrhythms, setShowPolyrhytms] = useState<Checked>(true);
   const [showRPC, setShowRPC] = useState<Checked>(false);
   const [showQRCode, setShowQRCode] = useState<Checked>(false);
   const [showResultSummary, setShowResultSummary] = useState<Checked>(false);
@@ -31,20 +31,20 @@ const CreationSelector: React.FC<CreationSelectorProps> = ({
   useEffect(() => {
     const shownComponents = new Array<string>();
     if (showTicTacToe) shownComponents.push("ttt");
-    if (showPolyrhytms) shownComponents.push("poly");
+    if (showPolyrhythms) shownComponents.push("poly");
     if (showRPC) shownComponents.push("rpc");
     if (showQRCode) shownComponents.push("qr");
     if (showResultSummary) shownComponents.push("results");
     setShownComponents(shownComponents);
-  }, [showTicTacToe, showPolyrhytms, showRPC, showQRCode, showResultSummary]);
+  }, [showTicTacToe, showPolyrhythms, showRPC, showQRCode, showResultSummary]);
 
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button className={`${className} text-base`}>Choose</Button>
+        <Button className={`${className} text-base`}>Components</Button>
       </DropdownMenuTrigger>
-      <DropdownMenuContent className="w-56">
-        <DropdownMenuLabel>Appearance</DropdownMenuLabel>
+      <DropdownMenuContent className="w-56 text-center">
+        <DropdownMenuLabel>Render Components</DropdownMenuLabel>
         <DropdownMenuSeparator />
         <DropdownMenuCheckboxItem
           checked={showTicTacToe}
@@ -53,10 +53,10 @@ const CreationSelector: React.FC<CreationSelectorProps> = ({
           Naughts and Crosses
         </DropdownMenuCheckboxItem>
         <DropdownMenuCheckboxItem
-          checked={showPolyrhytms}
+          checked={showPolyrhythms}
           onCheckedChange={setShowPolyrhytms}
         >
-          Polyrhytms
+          Polyrhythms
         </DropdownMenuCheckboxItem>
         <DropdownMenuCheckboxItem
           checked={showRPC}

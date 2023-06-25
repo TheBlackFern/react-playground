@@ -5,6 +5,10 @@ import qrcode from "../assets/images/image-qr-code.png";
 // light text: #7b879d or hsl(220, 15%, 55%)
 // (unused) background: #d6e2f0 or hsl(212, 45%, 89%)
 const QRCode = () => {
+  // doing this to preload the image
+  const imageElement = new Image();
+  imageElement.src = qrcode;
+
   return (
     <div className="flex h-[500px] w-80 flex-col rounded-xl border p-3 text-center leading-tight">
       <img className="mb-6 rounded-xl" src={qrcode} alt="qrcode"></img>

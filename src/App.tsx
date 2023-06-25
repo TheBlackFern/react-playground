@@ -52,7 +52,7 @@ function App() {
           </Creation>
         )}
         {shownComponents.includes("poly") && (
-          <Creation name="Polyrhytms">
+          <Creation name="Polyrhythms">
             <PolyrhytmBoard />
           </Creation>
         )}
@@ -64,11 +64,6 @@ function App() {
         {shownComponents.includes("qr") && (
           <Creation name="QR Code">
             <QRCode />
-          </Creation>
-        )}
-        {shownComponents.includes("results") && (
-          <Creation name="Result Summary">
-            <ResultSummary />
           </Creation>
         )}
         {shownComponents.includes("results") && (
