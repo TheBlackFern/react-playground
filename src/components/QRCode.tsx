@@ -1,6 +1,6 @@
 import { useState } from "react";
 import qrcode from "../assets/images/image-qr-code.png";
-import { Skeleton } from "./ui/Skeleton";
+import { Skeleton } from "./ui";
 
 // colors:
 // dark text: #1f3251 or hsl(218, 44%, 22%)

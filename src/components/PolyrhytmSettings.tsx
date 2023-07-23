@@ -1,6 +1,5 @@
 import { Volume2, VolumeX } from "lucide-react";
-import { Slider } from "./ui/Slider";
-import { Button } from "./ui/Button";
+import { Button, Slider } from "./ui";
 
 // this is so bad, can I do this without passing
 // 100000 props?

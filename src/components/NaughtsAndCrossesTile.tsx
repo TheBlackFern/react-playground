@@ -1,6 +1,6 @@
 import { MouseEventHandler } from "react";
 import { Circle, X } from "lucide-react";
-import { Button } from "./ui/Button";
+import { Button } from "./ui";
 
 interface tileProps {
   value: string | null;

@@ -1,14 +1,13 @@
-"use client";
 import { DropdownMenuCheckboxItemProps } from "@radix-ui/react-dropdown-menu";
-import { Button } from "./ui/Button";
 import {
+  Button,
   DropdownMenu,
   DropdownMenuCheckboxItem,
   DropdownMenuContent,
   DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from "./ui/Dropdown";
+} from "./ui";
 import { useEffect, useState } from "react";
 
 interface CreationSelectorProps {
@@ -27,7 +26,8 @@ const CreationSelector: React.FC<CreationSelectorProps> = ({
   const [showRPC, setShowRPC] = useState<Checked>(false);
   const [showQRCode, setShowQRCode] = useState<Checked>(false);
   const [showResultSummary, setShowResultSummary] = useState<Checked>(false);
-  const [showRating, setShowRating] = useState<Checked>(true);
+  const [showRating, setShowRating] = useState<Checked>(false);
+  const [showWordle, setShowWordle] = useState<Checked>(true);
 
   useEffect(() => {
     const shownComponents = new Array<string>();
@@ -37,6 +37,7 @@ const CreationSelector: React.FC<CreationSelectorProps> = ({
     if (showQRCode) shownComponents.push("qr");
     if (showResultSummary) shownComponents.push("results");
     if (showRating) shownComponents.push("rate");
+    if (showWordle) shownComponents.push("wordle");
     setShownComponents(shownComponents);
   }, [
     showTicTacToe,
@@ -57,6 +58,12 @@ const CreationSelector: React.FC<CreationSelectorProps> = ({
       <DropdownMenuContent className="w-56 text-center">
         <DropdownMenuLabel>Render Components</DropdownMenuLabel>
         <DropdownMenuSeparator />
+        <DropdownMenuCheckboxItem
+          checked={showWordle}
+          onCheckedChange={setShowWordle}
+        >
+          Wordle
+        </DropdownMenuCheckboxItem>
         <DropdownMenuCheckboxItem
           checked={showTicTacToe}
           onCheckedChange={setShowTicTackToe}

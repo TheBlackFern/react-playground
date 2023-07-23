@@ -4,20 +4,26 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "./Dropdown";
-import { Button } from "./Button";
+import { Button } from "./";
 import { Sun, Moon, Monitor } from "lucide-react";
+import { useTheme } from "../../lib/utils";
+import { useEffect } from "react";
 
 interface ThemeChangerProps {
-  theme: string;
   className?: string;
-  setThemeStrategy: (theme: string) => void;
 }
 
-const ThemeChanger: React.FC<ThemeChangerProps> = ({
-  theme,
-  className,
-  setThemeStrategy,
-}) => {
+const ThemeChanger: React.FC<ThemeChangerProps> = ({ className }) => {
+  const [theme, setTheme] = useTheme();
+
+  useEffect(() => {
+    if (theme === "dark") {
+      document.body.classList.add("dark");
+    } else {
+      document.body.classList.remove("dark");
+    }
+  }, [theme]);
+
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
@@ -35,15 +41,15 @@ const ThemeChanger: React.FC<ThemeChangerProps> = ({
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end">
-        <DropdownMenuItem onClick={() => setThemeStrategy("light")}>
+        <DropdownMenuItem onClick={() => setTheme("light")}>
           <Sun className="mr-2 h-4 w-4" />
           <span>Light</span>
         </DropdownMenuItem>
-        <DropdownMenuItem onClick={() => setThemeStrategy("dark")}>
+        <DropdownMenuItem onClick={() => setTheme("dark")}>
           <Moon className="mr-2 h-4 w-4" />
           <span>Dark</span>
         </DropdownMenuItem>
-        <DropdownMenuItem onClick={() => setThemeStrategy("system")}>
+        <DropdownMenuItem onClick={() => setTheme("system")}>
           <Monitor className="mr-2 h-4 w-4" />
           <span>System</span>
         </DropdownMenuItem>

@@ -1,5 +1,5 @@
 import RatingSelectRadio from "./RatingSelectRadio";
-import { Button } from "./ui/Button";
+import { Button } from "./ui";
 import { ReactComponent as Star } from "../assets/images/star.svg";
 
 interface RatingSelectProps {

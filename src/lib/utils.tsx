@@ -93,3 +93,30 @@ export function useCircleAnimation(
 
   return [lightUp];
 }
+
+/**
+ * Returns last pressed key and its code.
+ */
+export function useKeyDown(): [string, string, boolean] {
+  const [key, setKey] = useState("");
+  const [code, setCode] = useState("");
+  const [changed, setChanged] = useState(false);
+
+  useEffect(() => {
+    function onKeyPress(e: KeyboardEvent) {
+      const { key, code } = e;
+      if (code.includes("Key")) {
+        e.preventDefault();
+      }
+      setKey(key);
+      setCode(code);
+      setChanged((prev) => !prev);
+    }
+    window.addEventListener("keydown", onKeyPress);
+    return () => {
+      window.removeEventListener("keydown", onKeyPress);
+    };
+  }, []);
+
+  return [key, code, changed];
+}

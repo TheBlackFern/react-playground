@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import NaughtsAndCrossesTile from "./NaughtsAndCrossesTile";
-import { Button } from "./ui/Button";
+import { Button } from "./ui/";
 import { RefreshCw } from "lucide-react";
 
 function NaughtsAndCrossesBoard() {
