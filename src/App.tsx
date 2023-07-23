@@ -13,6 +13,7 @@ import NaughtsAndCrossesBoard from "./components/NaughtsAndCrossesBoard";
 import PolyrhytmBoard from "./components/PolyrhytmBoard";
 import RockPaperScissors from "./components/RockPaperScissors";
 import QRCode from "./components/QRCode";
+import Rating from "./components/Rating";
 
 function App() {
   const [theme, setTheme] = useTheme();
@@ -69,6 +70,11 @@ function App() {
         {shownComponents.includes("results") && (
           <Creation name="Result Summary">
             <ResultSummary />
+          </Creation>
+        )}
+        {shownComponents.includes("rate") && (
+          <Creation name="Rating Component">
+            <Rating />
           </Creation>
         )}
       </main>

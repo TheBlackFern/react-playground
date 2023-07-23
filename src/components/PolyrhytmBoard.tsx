@@ -39,7 +39,7 @@ const PolyrhytmBoard = () => {
   };
 
   return (
-    <div className="mb-2 mt-4 flex flex-col items-center">
+    <div className="flex flex-col items-center gap-4">
       <PolyrhytmSettings
         handleTogglePlay={handleTogglePlay}
         handleChangeSpeed={handleChangeSpeed}
@@ -47,19 +47,18 @@ const PolyrhytmBoard = () => {
         isPlaying={isPlaying}
         syncTime={syncTime}
       />
-      <div className="relative h-[22rem]">
-        <div className="absolute top-[52%]">
-          {[...Array(totalNumber)].map((_, i) => (
-            <PolyrhytmCircle
-              elapsedTime={elapsedTime}
-              currentNumber={i}
-              isPlaying={isPlaying}
-              syncTime={syncTime}
-              volume={volume}
-              key={i}
-            />
-          ))}
-        </div>
+      {/* max radius = totalNumber * baseRadius = 168px */}
+      <div className="relative h-[336px] w-[336px]">
+        {[...Array(totalNumber)].map((_, i) => (
+          <PolyrhytmCircle
+            elapsedTime={elapsedTime}
+            currentNumber={i}
+            isPlaying={isPlaying}
+            syncTime={syncTime}
+            volume={volume}
+            key={i}
+          />
+        ))}
       </div>
     </div>
   );

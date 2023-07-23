@@ -23,10 +23,11 @@ const CreationSelector: React.FC<CreationSelectorProps> = ({
   setShownComponents,
 }) => {
   const [showTicTacToe, setShowTicTackToe] = useState<Checked>(false);
-  const [showPolyrhythms, setShowPolyrhytms] = useState<Checked>(true);
+  const [showPolyrhythms, setShowPolyrhytms] = useState<Checked>(false);
   const [showRPC, setShowRPC] = useState<Checked>(false);
   const [showQRCode, setShowQRCode] = useState<Checked>(false);
   const [showResultSummary, setShowResultSummary] = useState<Checked>(false);
+  const [showRating, setShowRating] = useState<Checked>(true);
 
   useEffect(() => {
     const shownComponents = new Array<string>();
@@ -35,13 +36,23 @@ const CreationSelector: React.FC<CreationSelectorProps> = ({
     if (showRPC) shownComponents.push("rpc");
     if (showQRCode) shownComponents.push("qr");
     if (showResultSummary) shownComponents.push("results");
+    if (showRating) shownComponents.push("rate");
     setShownComponents(shownComponents);
-  }, [showTicTacToe, showPolyrhythms, showRPC, showQRCode, showResultSummary]);
+  }, [
+    showTicTacToe,
+    showPolyrhythms,
+    showRPC,
+    showQRCode,
+    showResultSummary,
+    showRating,
+  ]);
 
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button className={`${className}`}>Components</Button>
+        <Button variant={"outline"} className={`${className}`}>
+          Components
+        </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent className="w-56 text-center">
         <DropdownMenuLabel>Render Components</DropdownMenuLabel>
@@ -75,6 +86,12 @@ const CreationSelector: React.FC<CreationSelectorProps> = ({
           onCheckedChange={setShowResultSummary}
         >
           Result Summary
+        </DropdownMenuCheckboxItem>
+        <DropdownMenuCheckboxItem
+          checked={showRating}
+          onCheckedChange={setShowRating}
+        >
+          Rating
         </DropdownMenuCheckboxItem>
       </DropdownMenuContent>
     </DropdownMenu>

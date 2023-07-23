@@ -60,11 +60,11 @@ const PolyrhytmCircle: React.FC<PolyrhytmCircleProps> = ({
   return (
     <div
       style={containerStyle}
-      className={`absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full border ${
+      className={`absolute inset-0 m-auto rounded-full border transition-all duration-500 ${
         isPlaying && lightUp
           ? "border-primary dark:border-primary"
           : "border-input dark:border-input"
-      } transition-all duration-500`}
+      }`}
     >
       <div
         style={circleStyle}

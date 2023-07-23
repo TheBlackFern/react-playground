@@ -33,7 +33,7 @@ function RockPaperScissors() {
   }
 
   return (
-    <div className="flex flex-col items-center justify-center pt-4">
+    <div className="flex flex-col items-center justify-center">
       <div className="flex space-x-3">
         <Button
           variant="outline"

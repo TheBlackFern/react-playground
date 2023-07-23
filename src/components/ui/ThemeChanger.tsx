@@ -24,12 +24,12 @@ const ThemeChanger: React.FC<ThemeChangerProps> = ({
         <Button
           variant="outline"
           size="sm"
-          className={`${className} grid h-12 w-12 place-content-center`}
+          className={`${className} grid h-8 w-8 place-content-center`}
         >
           {theme === "light" ? (
-            <Sun className="h-8 w-8" strokeWidth={1.5} />
+            <Sun className="h-6 w-6" strokeWidth={1.5} />
           ) : (
-            <Moon className="h-8 w-6" strokeWidth={1.5} />
+            <Moon className="h-6 w-6" strokeWidth={1.5} />
           )}
           <span className="sr-only">Toggle theme</span>
         </Button>

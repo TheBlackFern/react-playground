@@ -78,7 +78,7 @@ export function useCircleAnimation(
   const [lightUp, setLightUp] = useState(false);
 
   // This is the most reliable solution as when time is stopped we don't get lights and
-  // sounds firing, but at the same time we are spot on with the timing. Also changing syntTime
+  // sounds firing, but at the same time we are spot on with the timing. Also changing syncTime
   // doesn't affect anything (as apposed to having it be dependant on elapsed time and nextFullRevTime)
   useEffect(() => {
     if (angle >= nextFullRevTime) {

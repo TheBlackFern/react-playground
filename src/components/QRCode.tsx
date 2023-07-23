@@ -14,18 +14,18 @@ const QRCode = () => {
   const [isLoading, setIsLoading] = useState(true);
 
   return (
-    <div className="flex h-[500px] w-80 flex-col items-center justify-center rounded-xl border p-3 text-center leading-tight shadow-md">
+    <div className="flex h-auto w-80 flex-col items-center justify-center rounded-2xl border px-3 pb-10 pt-4 text-center leading-tight shadow-md">
       <img
-        className="mb-6 rounded-xl"
+        className="mb-6 h-72 w-72 rounded-xl"
         src={qrcode}
         alt="qrcode"
         onLoad={() => setIsLoading(false)}
       ></img>
-      {isLoading && <Skeleton className="mb-6 h-72 w-72" />}
-      <p className="mb-4 px-3 text-[22px] font-bold tracking-tight text-[#1f3251] dark:text-[#7b879d]">
+      {isLoading && <Skeleton className="mb-6 h-72 w-72 rounded-xl" />}
+      <p className="mb-4 px-5 text-[22px] font-bold tracking-tight text-[#1f3251] dark:text-[#7b879d]">
         Improve your front-end skills by building projects
       </p>
-      <p className="px-2 text-[15px] text-[#7b879d] dark:text-[#7b879d]">
+      <p className="px-4 text-[15px] text-[#7b879d] dark:text-[#7b879d]">
         Scan the QR code to visit Frontend Mentor and take your coding skills to
         the next level
       </p>

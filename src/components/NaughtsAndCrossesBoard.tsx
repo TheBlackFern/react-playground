@@ -9,7 +9,7 @@ function NaughtsAndCrossesBoard() {
   const [isGameOver, setIsGameOver] = useState(false);
   const winningRef = useRef(Array(9).fill(false));
 
-  // after each rerender check all lines to see if someone won
+  // after each rerender check all lines to see if anybody won
   useEffect(() => {
     const linesToCheck = [
       [0, 1, 2],
@@ -57,7 +57,7 @@ function NaughtsAndCrossesBoard() {
   }
 
   return (
-    <div className="z-1 mt relative mr-2 flex flex-row rounded-lg p-3">
+    <div className="relative flex w-40 flex-row gap-3 pl-2">
       <Button
         className="absolute -right-10 top-1/2 h-10 w-10 -translate-y-1/2"
         onClick={resetBoard}
