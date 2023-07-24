@@ -4,6 +4,7 @@ import WordleRow from "./WordleRow";
 import { Button } from "./ui";
 import { RefreshCw } from "lucide-react";
 import { useQuery } from "react-query";
+import { words } from "../assets/data/words";
 
 const Wordle = () => {
   const d = new Date().toISOString().split("T")[0];
@@ -20,7 +21,7 @@ const Wordle = () => {
   const [isGameOver, setIsGameOver] = useState(false);
   const [key, code, changed] = useKeyDown();
   const [currentGuessNumber, setCurrentGuessNumber] = useState(0);
-  const [currentGuess, setCurrentGuess] = useState(Array(5).fill(""));
+  const [currentGuess, setCurrentGuess] = useState<string[]>(Array(5).fill(""));
   const [currentAttemptNumber, setCurrentAttemptNumber] = useState(0);
   const [attempts, setAttempts] = useState<string[][]>(
     Array(6).fill(Array(5).fill(""))
@@ -53,10 +54,12 @@ const Wordle = () => {
       setCurrentGuessNumber((prev) => prev - 1);
     }
     if (code === "Enter") {
-      if (currentGuessNumber < 5) {
+      if (
+        currentGuessNumber < 5 ||
+        !words.includes(currentGuess.join("").toLowerCase())
+      ) {
         return;
       }
-
       setAttempts((prev) => {
         prev[currentAttemptNumber] = currentGuess;
         return prev;

@@ -12,7 +12,8 @@ const WordleTile = ({ letter, done, colour }: Props) => {
       className={`flex h-12 w-12  items-center justify-center rounded-sm border font-mono text-3xl font-bold transition-all duration-300 ${
         done &&
         ((colour === "is" && "bg-green-400") ||
-          (colour === "has" && "bg-blue-600"))
+          (colour === "has" && "bg-blue-600") ||
+          (colour === "default" && "bg-slate-800"))
       }`}
     >
       {letter}
