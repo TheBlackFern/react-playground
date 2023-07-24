@@ -1,4 +1,5 @@
 export const words = [
+  "squid",
   "cigar",
   "rebut",
   "sissy",

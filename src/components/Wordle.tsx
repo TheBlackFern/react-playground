@@ -1,10 +1,13 @@
 import { useEffect, useState } from "react";
+import { useQuery } from "react-query";
+
 import { useKeyDown } from "../lib/utils";
-import WordleRow from "./WordleRow";
 import { Button } from "./ui";
 import { RefreshCw } from "lucide-react";
-import { useQuery } from "react-query";
+
 import { words } from "../assets/data/words";
+import WordleRow from "./WordleRow";
+import WordleKeyBoard from "./WordleKeyBoard";
 
 const Wordle = () => {
   const d = new Date().toISOString().split("T")[0];
@@ -18,8 +21,9 @@ const Wordle = () => {
   });
 
   const ANSWER = data!.toUpperCase().split("");
-  const [isGameOver, setIsGameOver] = useState(false);
   const [key, code, changed] = useKeyDown();
+  const [usedLetters, setUsedLetters] = useState(new Set<string>());
+  const [isGameOver, setIsGameOver] = useState(false);
   const [currentGuessNumber, setCurrentGuessNumber] = useState(0);
   const [currentGuess, setCurrentGuess] = useState<string[]>(Array(5).fill(""));
   const [currentAttemptNumber, setCurrentAttemptNumber] = useState(0);
@@ -65,6 +69,9 @@ const Wordle = () => {
         return prev;
       });
 
+      currentGuess.forEach((letter) =>
+        setUsedLetters((prev) => prev.add(letter))
+      );
       setCurrentAttemptNumber((prev) => prev + 1);
       setCurrentGuess(Array(5).fill(""));
       if (currentGuess.join("") === ANSWER.join("") || isGameOver) {
@@ -90,44 +97,52 @@ const Wordle = () => {
   if (isLoading) return <span>Bruh</span>;
   if (error) return <span>Capital Bruh</span>;
   return (
-    <div className="relative flex flex-col gap-3">
-      <Button
-        className="absolute -right-12 top-1/2 h-10 w-10 -translate-y-1/2"
-        onClick={reset}
-      >
-        <RefreshCw className="absolute h-6 w-6" strokeWidth={1.5} />
-      </Button>
-      <WordleRow
-        word={currentAttemptNumber == 0 ? currentGuess : attempts[0]}
-        done={currentAttemptNumber > 0}
-        answer={ANSWER}
+    <>
+      <div className="relative flex flex-col gap-3">
+        <Button
+          className="absolute -right-12 top-1/2 h-10 w-10 -translate-y-1/2"
+          onClick={reset}
+        >
+          <RefreshCw className="absolute h-6 w-6" strokeWidth={1.5} />
+        </Button>
+        <WordleRow
+          word={currentAttemptNumber == 0 ? currentGuess : attempts[0]}
+          done={currentAttemptNumber > 0}
+          answer={ANSWER}
+        />
+        <WordleRow
+          word={currentAttemptNumber == 1 ? currentGuess : attempts[1]}
+          done={currentAttemptNumber > 1}
+          answer={ANSWER}
+        />
+        <WordleRow
+          word={currentAttemptNumber == 2 ? currentGuess : attempts[2]}
+          done={currentAttemptNumber > 2}
+          answer={ANSWER}
+        />
+        <WordleRow
+          word={currentAttemptNumber == 3 ? currentGuess : attempts[3]}
+          done={currentAttemptNumber > 3}
+          answer={ANSWER}
+        />
+        <WordleRow
+          word={currentAttemptNumber == 4 ? currentGuess : attempts[4]}
+          done={currentAttemptNumber > 4}
+          answer={ANSWER}
+        />
+        <WordleRow
+          word={currentAttemptNumber == 5 ? currentGuess : attempts[5]}
+          done={currentAttemptNumber > 5}
+          answer={ANSWER}
+        />
+      </div>
+      <WordleKeyBoard
+        usedLetters={usedLetters}
+        setCurrentGuess={setCurrentGuess}
+        setCurrentGuessNumber={setCurrentGuessNumber}
+        currentGuessNumber={currentGuessNumber}
       />
-      <WordleRow
-        word={currentAttemptNumber == 1 ? currentGuess : attempts[1]}
-        done={currentAttemptNumber > 1}
-        answer={ANSWER}
-      />
-      <WordleRow
-        word={currentAttemptNumber == 2 ? currentGuess : attempts[2]}
-        done={currentAttemptNumber > 2}
-        answer={ANSWER}
-      />
-      <WordleRow
-        word={currentAttemptNumber == 3 ? currentGuess : attempts[3]}
-        done={currentAttemptNumber > 3}
-        answer={ANSWER}
-      />
-      <WordleRow
-        word={currentAttemptNumber == 4 ? currentGuess : attempts[4]}
-        done={currentAttemptNumber > 4}
-        answer={ANSWER}
-      />
-      <WordleRow
-        word={currentAttemptNumber == 5 ? currentGuess : attempts[5]}
-        done={currentAttemptNumber > 5}
-        answer={ANSWER}
-      />
-    </div>
+    </>
   );
 };
 

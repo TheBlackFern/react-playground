@@ -46,6 +46,9 @@ export default {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
+        wrong: "hsl(215.3, 25%, 26.7%)",
+        correct: "hsl(142.4, 71.8%, 29.2%)",
+        almost: "hsl(224.3, 76.3%, 48%)",
       },
       borderRadius: {
         lg: `var(--radius)`,
