@@ -26,7 +26,7 @@ const WordleRow = ({ word, done, answer }: Props) => {
   });
 
   return (
-    <div className="flex gap-2">
+    <div className="flex gap-1">
       <WordleTile letter={word[0]} colour={colours[0]} done={done} />
       <WordleTile letter={word[1]} colour={colours[1]} done={done} />
       <WordleTile letter={word[2]} colour={colours[2]} done={done} />

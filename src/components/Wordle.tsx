@@ -3,9 +3,20 @@ import { useKeyDown } from "../lib/utils";
 import WordleRow from "./WordleRow";
 import { Button } from "./ui";
 import { RefreshCw } from "lucide-react";
+import { useQuery } from "react-query";
 
 const Wordle = () => {
-  const ANSWER = "brass".toUpperCase().split("");
+  const d = new Date().toISOString().split("T")[0];
+  const { isLoading, error, data } = useQuery<string, Error>({
+    queryKey: ["wordleAnswer"],
+    queryFn: () =>
+      fetch(`https://neal.fun/api/password-game/wordle?date=${d}`)
+        .then((r) => r.json())
+        .then((d) => d.answer),
+    placeholderData: "xxxxx",
+  });
+
+  const ANSWER = data!.toUpperCase().split("");
   const [isGameOver, setIsGameOver] = useState(false);
   const [key, code, changed] = useKeyDown();
   const [currentGuessNumber, setCurrentGuessNumber] = useState(0);
@@ -73,10 +84,12 @@ const Wordle = () => {
     setIsGameOver(false);
   }
 
+  if (isLoading) return <span>Bruh</span>;
+  if (error) return <span>Capital Bruh</span>;
   return (
-    <div className="relative flex flex-col gap-2">
+    <div className="relative flex flex-col gap-3">
       <Button
-        className="absolute -right-1/4 top-1/2 h-10 w-10 -translate-y-1/2"
+        className="absolute -right-12 top-1/2 h-10 w-10 -translate-y-1/2"
         onClick={reset}
       >
         <RefreshCw className="absolute h-6 w-6" strokeWidth={1.5} />
