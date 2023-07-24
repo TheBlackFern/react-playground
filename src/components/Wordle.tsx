@@ -1,28 +1,22 @@
-import { createContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useKeyDown } from "../lib/utils";
 import WordleRow from "./WordleRow";
 import { Button } from "./ui";
 import { RefreshCw } from "lucide-react";
 
-export const AnswerContext = createContext("RIGHT");
-
 const Wordle = () => {
-  const ANSWER = "RIGHT";
+  const ANSWER = "brass".toUpperCase().split("");
+  const [isGameOver, setIsGameOver] = useState(false);
   const [key, code, changed] = useKeyDown();
   const [currentGuessNumber, setCurrentGuessNumber] = useState(0);
-  const [currentGuess, setCurrentGuess] = useState(["", "", "", "", ""]);
+  const [currentGuess, setCurrentGuess] = useState(Array(5).fill(""));
   const [currentAttemptNumber, setCurrentAttemptNumber] = useState(0);
-  const [attempts, setAttempts] = useState<string[][]>([
-    ["", "", "", "", ""],
-    ["", "", "", "", ""],
-    ["", "", "", "", ""],
-    ["", "", "", "", ""],
-    ["", "", "", "", ""],
-    ["", "", "", "", ""],
-    ["", "", "", "", ""],
-  ]);
+  const [attempts, setAttempts] = useState<string[][]>(
+    Array(6).fill(Array(5).fill(""))
+  );
 
   useEffect(() => {
+    // all letter have codes of KeyX where X is the letter
     if (code.includes("Key")) {
       if (currentGuessNumber >= 5) {
         return;
@@ -34,7 +28,11 @@ const Wordle = () => {
       setCurrentGuessNumber((prev) => prev + 1);
     }
     if (code === "Backspace") {
-      if (currentGuessNumber == 0) {
+      // this is a "clever" trick so that upon gameover
+      // pressing backspace will not make the player
+      // able type, as opposed to checking that guess
+      // number is 0.
+      if (currentGuess[0] === "") {
         return;
       }
       setCurrentGuess((prev) => {
@@ -52,62 +50,68 @@ const Wordle = () => {
         prev[currentAttemptNumber] = currentGuess;
         return prev;
       });
+
       setCurrentAttemptNumber((prev) => prev + 1);
-      setCurrentGuess(["", "", "", "", ""]);
+      setCurrentGuess(Array(5).fill(""));
+      if (currentGuess.join("") === ANSWER.join("") || isGameOver) {
+        setIsGameOver(true);
+        return;
+      }
+      // this is the easiest way I found to make the player unable to type:
+      // we just make the game think that we are typing the 6th+ letter
+      // even though the actual guess is "     "
+      // but if our guess is incorrect, we reset to 0
       setCurrentGuessNumber(0);
     }
   }, [changed]);
 
   function reset() {
-    setAttempts([
-      ["", "", "", "", ""],
-      ["", "", "", "", ""],
-      ["", "", "", "", ""],
-      ["", "", "", "", ""],
-      ["", "", "", "", ""],
-      ["", "", "", "", ""],
-      ["", "", "", "", ""],
-    ]);
+    setAttempts(Array(6).fill(Array(5).fill("")));
+    setCurrentGuess(Array(5).fill(""));
     setCurrentAttemptNumber(0);
-    setCurrentGuess(["", "", "", "", ""]);
     setCurrentGuessNumber(0);
+    setIsGameOver(false);
   }
 
   return (
-    <AnswerContext.Provider value={ANSWER}>
-      <div className="relative flex flex-col gap-2">
-        <Button
-          className="absolute -right-1/4 top-1/2 h-10 w-10 -translate-y-1/2"
-          onClick={reset}
-        >
-          <RefreshCw className="absolute h-6 w-6" strokeWidth={1.5} />
-        </Button>
-        <WordleRow
-          word={currentAttemptNumber == 0 ? currentGuess : attempts[0]}
-          done={currentAttemptNumber > 0}
-        />
-        <WordleRow
-          word={currentAttemptNumber == 1 ? currentGuess : attempts[1]}
-          done={currentAttemptNumber > 1}
-        />
-        <WordleRow
-          word={currentAttemptNumber == 2 ? currentGuess : attempts[2]}
-          done={currentAttemptNumber > 2}
-        />
-        <WordleRow
-          word={currentAttemptNumber == 3 ? currentGuess : attempts[3]}
-          done={currentAttemptNumber > 3}
-        />
-        <WordleRow
-          word={currentAttemptNumber == 4 ? currentGuess : attempts[4]}
-          done={currentAttemptNumber > 4}
-        />
-        <WordleRow
-          word={currentAttemptNumber == 5 ? currentGuess : attempts[5]}
-          done={currentAttemptNumber > 5}
-        />
-      </div>
-    </AnswerContext.Provider>
+    <div className="relative flex flex-col gap-2">
+      <Button
+        className="absolute -right-1/4 top-1/2 h-10 w-10 -translate-y-1/2"
+        onClick={reset}
+      >
+        <RefreshCw className="absolute h-6 w-6" strokeWidth={1.5} />
+      </Button>
+      <WordleRow
+        word={currentAttemptNumber == 0 ? currentGuess : attempts[0]}
+        done={currentAttemptNumber > 0}
+        answer={ANSWER}
+      />
+      <WordleRow
+        word={currentAttemptNumber == 1 ? currentGuess : attempts[1]}
+        done={currentAttemptNumber > 1}
+        answer={ANSWER}
+      />
+      <WordleRow
+        word={currentAttemptNumber == 2 ? currentGuess : attempts[2]}
+        done={currentAttemptNumber > 2}
+        answer={ANSWER}
+      />
+      <WordleRow
+        word={currentAttemptNumber == 3 ? currentGuess : attempts[3]}
+        done={currentAttemptNumber > 3}
+        answer={ANSWER}
+      />
+      <WordleRow
+        word={currentAttemptNumber == 4 ? currentGuess : attempts[4]}
+        done={currentAttemptNumber > 4}
+        answer={ANSWER}
+      />
+      <WordleRow
+        word={currentAttemptNumber == 5 ? currentGuess : attempts[5]}
+        done={currentAttemptNumber > 5}
+        answer={ANSWER}
+      />
+    </div>
   );
 };
 
