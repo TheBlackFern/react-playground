@@ -1,12 +1,12 @@
-interface RatingSelectRadioProps {
+interface Props {
   points: number;
   rate: (rating: number) => void;
 }
 
-const RatingSelectRadio: React.FC<RatingSelectRadioProps> = ({
+const RatingSelectRadio = ({
   points,
   rate,
-}) => {
+}: Props) => {
   return (
     <label className="relative h-9 w-9 transition-all duration-300">
       <input

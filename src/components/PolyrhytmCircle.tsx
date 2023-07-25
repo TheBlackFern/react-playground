@@ -2,7 +2,7 @@ import useSound from "use-sound";
 import { useCircleAnimation, useRotation } from "../lib/utils";
 import vibroMap from "../assets/assets";
 
-interface PolyrhytmCircleProps {
+type Props = {
   elapsedTime: number;
   syncTime: number;
   currentNumber: number;
@@ -10,13 +10,13 @@ interface PolyrhytmCircleProps {
   volume: number;
 }
 
-const PolyrhytmCircle: React.FC<PolyrhytmCircleProps> = ({
+const PolyrhytmCircle = ({
   elapsedTime,
   syncTime,
   currentNumber,
   isPlaying,
   volume,
-}) => {
+}: Props) => {
   const numberOfLaps = 50; // just a nice number
 
   // baseVelocity is when you complete 1 circle in syncTime

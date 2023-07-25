@@ -3,7 +3,7 @@ import { Button, Slider } from "./ui";
 
 // this is so bad, can I do this without passing
 // 100000 props?
-interface PolyrhytmSettingsProps {
+type Props = {
   handleTogglePlay: React.MouseEventHandler<HTMLButtonElement>;
   handleChangeSpeed: (val: number[]) => void;
   handleChangeVolume: (val: number[]) => void;
@@ -11,16 +11,15 @@ interface PolyrhytmSettingsProps {
   syncTime: number;
 }
 
-const PolyrhytmSettings: React.FC<PolyrhytmSettingsProps> = ({
+const PolyrhytmSettings = ({
   handleTogglePlay,
   handleChangeSpeed,
   handleChangeVolume,
   isPlaying,
   syncTime,
-}) => {
+}: Props) => {
   return (
     <div className="z-10 grid w-52 grid-flow-row grid-cols-5 place-items-center gap-y-1">
-      {/* w-[4.3rem] is just ridiculous, has to be a better way */}
       <p className="col-span-1 w-18 place-self-end text-right">Sync time</p>
       <Slider
         defaultValue={[600]}

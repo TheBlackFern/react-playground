@@ -1,10 +1,10 @@
 import ThankYou from "../assets/images/illustration-thank-you.svg";
 
-interface RatingThankYouProps {
+type Props = {
   rating: number;
 }
 
-const RatingThankYou: React.FC<RatingThankYouProps> = ({ rating }) => {
+const RatingThankYou = ({ rating }: Props) => {
   return (
     <>
       <img src={ThankYou} className="mb-2 h-24 w-36 self-center" />

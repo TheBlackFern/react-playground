@@ -20,6 +20,7 @@ const Wordle = () => {
     placeholderData: "xxxxx",
   });
 
+  const NUM_OF_GUESSES = 6;
   const ANSWER = data!.toUpperCase().split("");
   const [key, code, changed] = useKeyDown();
   const [usedLetters, setUsedLetters] = useState(new Set<string>());
@@ -28,13 +29,13 @@ const Wordle = () => {
   const [currentGuess, setCurrentGuess] = useState<string[]>(Array(5).fill(""));
   const [currentAttemptNumber, setCurrentAttemptNumber] = useState(0);
   const [attempts, setAttempts] = useState<string[][]>(
-    Array(6).fill(Array(5).fill(""))
+    Array(NUM_OF_GUESSES).fill(Array(ANSWER.length).fill(""))
   );
 
   useEffect(() => {
     // all letter have codes of KeyX where X is the letter
     if (code.includes("Key")) {
-      if (currentGuessNumber >= 5) {
+      if (currentGuessNumber >= ANSWER.length) {
         return;
       }
       setCurrentGuess((prev) => {
@@ -46,8 +47,8 @@ const Wordle = () => {
     if (code === "Backspace") {
       // this is a "clever" trick so that upon gameover
       // pressing backspace will not make the player
-      // able type, as opposed to checking that guess
-      // number is 0.
+      // able to type (as opposed to checking that the guess
+      // number is 0).
       if (currentGuess[0] === "") {
         return;
       }
@@ -59,7 +60,7 @@ const Wordle = () => {
     }
     if (code === "Enter") {
       if (
-        currentGuessNumber < 5 ||
+        currentGuessNumber < ANSWER.length ||
         !words.includes(currentGuess.join("").toLowerCase())
       ) {
         return;
@@ -73,7 +74,7 @@ const Wordle = () => {
         setUsedLetters((prev) => prev.add(letter))
       );
       setCurrentAttemptNumber((prev) => prev + 1);
-      setCurrentGuess(Array(5).fill(""));
+      setCurrentGuess(Array(ANSWER.length).fill(""));
       if (currentGuess.join("") === ANSWER.join("") || isGameOver) {
         setIsGameOver(true);
         return;
@@ -87,54 +88,33 @@ const Wordle = () => {
   }, [changed]);
 
   function reset() {
-    setAttempts(Array(6).fill(Array(5).fill("")));
-    setCurrentGuess(Array(5).fill(""));
+    setAttempts(Array(NUM_OF_GUESSES).fill(Array(ANSWER.length).fill("")));
+    setCurrentGuess(Array(ANSWER.length).fill(""));
     setCurrentAttemptNumber(0);
     setCurrentGuessNumber(0);
     setIsGameOver(false);
+    setUsedLetters(new Set<string>())
   }
 
-  if (isLoading) return <span>Bruh</span>;
-  if (error) return <span>Capital Bruh</span>;
+  if (isLoading) return <span>Loading...</span>;
+  if (error) return <span>Unexpected Error!</span>;
   return (
     <>
-      <div className="relative flex flex-col gap-3">
+      <div className="relative flex flex-col gap-2">
         <Button
-          className="absolute -right-12 top-1/2 h-10 w-10 -translate-y-1/2"
+          className="absolute -right-14 top-1/2 h-11 w-11 -translate-y-1/2"
           onClick={reset}
         >
-          <RefreshCw className="absolute h-6 w-6" strokeWidth={1.5} />
+          <RefreshCw className="absolute h-7 w-7" strokeWidth={1.5} />
         </Button>
-        <WordleRow
-          word={currentAttemptNumber == 0 ? currentGuess : attempts[0]}
-          done={currentAttemptNumber > 0}
-          answer={ANSWER}
-        />
-        <WordleRow
-          word={currentAttemptNumber == 1 ? currentGuess : attempts[1]}
-          done={currentAttemptNumber > 1}
-          answer={ANSWER}
-        />
-        <WordleRow
-          word={currentAttemptNumber == 2 ? currentGuess : attempts[2]}
-          done={currentAttemptNumber > 2}
-          answer={ANSWER}
-        />
-        <WordleRow
-          word={currentAttemptNumber == 3 ? currentGuess : attempts[3]}
-          done={currentAttemptNumber > 3}
-          answer={ANSWER}
-        />
-        <WordleRow
-          word={currentAttemptNumber == 4 ? currentGuess : attempts[4]}
-          done={currentAttemptNumber > 4}
-          answer={ANSWER}
-        />
-        <WordleRow
-          word={currentAttemptNumber == 5 ? currentGuess : attempts[5]}
-          done={currentAttemptNumber > 5}
-          answer={ANSWER}
-        />
+        {Array.from(Array(6).keys()).map((i) => (
+          <WordleRow
+            word={currentAttemptNumber == i ? currentGuess : attempts[i]}
+            done={currentAttemptNumber > i}
+            answer={ANSWER}
+            key={i}
+          />
+        ))}
       </div>
       <WordleKeyBoard
         usedLetters={usedLetters}

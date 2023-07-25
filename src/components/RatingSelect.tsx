@@ -2,12 +2,12 @@ import RatingSelectRadio from "./RatingSelectRadio";
 import { Button } from "./ui";
 import { ReactComponent as Star } from "../assets/images/star.svg";
 
-interface RatingSelectProps {
+type Props = {
   submit: (isSubmitted: boolean) => void;
   rate: (rating: number) => void;
 }
 
-const RatingSelect: React.FC<RatingSelectProps> = ({ submit, rate }) => {
+const RatingSelect = ({ submit, rate }: Props) => {
   return (
     <>
       <Star className="h-9 w-9  rounded-full bg-secondary p-2" />

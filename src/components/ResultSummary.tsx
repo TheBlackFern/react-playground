@@ -2,7 +2,7 @@ import { createContext, useCallback, useMemo, useState } from "react";
 import ResultSummaryResult from "./ResultSummaryResult";
 import ResultSummarySummary from "./ResultSummarySummary";
 
-type scoreType = {
+type Score = {
   reaction: number;
   memory: number;
   verbal: number;
@@ -16,7 +16,7 @@ export const ResultContext = createContext({
     verbal: 61,
     visual: 72,
   },
-  changeScore: (newScore: scoreType) => {
+  changeScore: (newScore: Score) => {
     -1 && console.log(newScore); // so that it shuts up about newScore not being used
     return;
   },
@@ -31,11 +31,11 @@ const ResultSummary = () => {
   });
 
   // function change doesn't cause a rerender
-  const changeScore = useCallback((newResult: scoreType) => {
+  const changeScore = useCallback((newResult: Score) => {
     setScore(newResult);
   }, []);
 
-  // we keep the result value stored to avoid rerendders
+  // we keep the result value stored to avoid rerenders
   const contextValue = useMemo(
     () => ({
       score: score,

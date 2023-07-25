@@ -11,7 +11,7 @@ svgMap.set("memory", Memory);
 svgMap.set("verbal", Verbal);
 svgMap.set("visual", Visual);
 
-interface ResultSummarySummaryRowProps {
+type Props  = {
   title: "reaction" | "memory" | "verbal" | "visual";
   score: number;
 }
@@ -26,10 +26,10 @@ interface ResultSummarySummaryRowProps {
 // Pale blue: #ebf1ff
 // Light lavender: #c8c7ff
 // Dark gray blue: #303b5a
-const ResultSummarySummaryRow: React.FC<ResultSummarySummaryRowProps> = ({
+const ResultSummarySummaryRow = ({
   title,
   score,
-}) => {
+}: Props) => {
   const [isLoading, setIsLoading] = useState(true);
 
   return (

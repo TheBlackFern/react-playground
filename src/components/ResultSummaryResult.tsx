@@ -1,12 +1,12 @@
+
+import { useContext } from "react";
+import { ResultContext } from "./ResultSummary";
+
 // colours:
 // Light red: #ff5757
 // Orangey yellow: #ffb01f
 // Green teal: #00bd91
 // Cobalt blue: #1125d4
-
-import { useContext } from "react";
-import { ResultContext } from "./ResultSummary";
-
 // White: #ffffff
 // Pale blue: #ebf1ff
 // Light lavender: #c8c7ff

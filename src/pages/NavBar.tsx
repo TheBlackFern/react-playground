@@ -1,12 +1,14 @@
 import { Swords } from "lucide-react";
 import { CreationSelector } from "../components";
 import { ThemeChanger } from "../components/ui";
+import { ComponentsType } from "../App";
 
 type Props = {
-  setShownComponents: React.Dispatch<React.SetStateAction<string[]>>;
+  shownComponents: ComponentsType;
+  setShownComponents: React.Dispatch<React.SetStateAction<ComponentsType>>;
 };
 
-const NavBar = ({ setShownComponents }: Props) => {
+const NavBar = ({ shownComponents, setShownComponents }: Props) => {
   return (
     <nav className="flex h-16 w-full flex-row items-center space-x-4 border-b bg-background px-6 md:space-x-6 lg:px-12">
       <div className="flex flex-row items-center space-x-2">
@@ -14,6 +16,7 @@ const NavBar = ({ setShownComponents }: Props) => {
         <h1 className="mb-1 text-xl text-primary md:text-3xl">Playground!</h1>
       </div>
       <CreationSelector
+        shownComponents={shownComponents}
         setShownComponents={setShownComponents}
         className="h-8 w-24 md:w-48 md:text-lg"
       />

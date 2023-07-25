@@ -2,19 +2,19 @@ import { MouseEventHandler } from "react";
 import { Circle, X } from "lucide-react";
 import { Button } from "./ui";
 
-interface tileProps {
+type Props = {
   value: string | null;
   onTileClick: MouseEventHandler<HTMLButtonElement>;
   isWinning: boolean;
   gameOver: boolean;
 }
 
-const NaughtsAndCrossesTile: React.FC<tileProps> = ({
+const NaughtsAndCrossesTile = ({
   value,
   onTileClick,
   isWinning,
   gameOver,
-}) => {
+}: Props) => {
   return (
     <Button
       variant="outline"

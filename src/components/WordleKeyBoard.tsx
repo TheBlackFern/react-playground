@@ -40,7 +40,7 @@ const WordleKeyBoard = ({
       <div className="flex flex-row items-center justify-center gap-0.5">
         {row1.map((char) => (
           <Button
-            className={`h-10 w-10 px-1 font-mono text-xl ${
+            className={`h-10 w-10 px-1 font-bold text-lg ${
               usedLetters.has(char) ? "bg-wrong text-white" : ""
             }`}
             onClick={() => handleClick(char)}
@@ -53,7 +53,7 @@ const WordleKeyBoard = ({
       <div className="flex flex-row items-center justify-center gap-0.5">
         {row2.map((char) => (
           <Button
-            className={`h-10 w-10 px-1 font-mono text-xl ${
+            className={`h-10 w-10 px-1 font-bold text-lg ${
               usedLetters.has(char) ? "bg-wrong text-white" : ""
             }`}
             onClick={() => handleClick(char)}
@@ -65,14 +65,14 @@ const WordleKeyBoard = ({
       </div>
       <div className="flex flex-row items-center justify-center gap-0.5">
         <Button
-          className="h-10 w-auto px-1 font-mono text-xl"
+          className="h-10 w-auto px-1 font-bold text-lg"
           onClick={() => handleClick("Enter")}
         >
           Enter
         </Button>
         {row3.map((char) => (
           <Button
-            className={`h-10 w-10 px-1 font-mono text-xl ${
+            className={`h-10 w-10 px-1 font-bold text-lg ${
               usedLetters.has(char) ? "bg-wrong text-white" : ""
             }`}
             onClick={() => handleClick(char)}
@@ -82,7 +82,7 @@ const WordleKeyBoard = ({
           </Button>
         ))}
         <Button
-          className="h-10 w-auto px-1 font-mono text-xl"
+          className="h-10 w-auto px-1 font-bold text-lg"
           onClick={() => handleClick("Backspace")}
         >
           Backspace
