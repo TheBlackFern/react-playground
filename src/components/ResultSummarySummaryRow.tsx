@@ -11,10 +11,10 @@ svgMap.set("memory", Memory);
 svgMap.set("verbal", Verbal);
 svgMap.set("visual", Visual);
 
-type Props  = {
+type Props = {
   title: "reaction" | "memory" | "verbal" | "visual";
   score: number;
-}
+};
 
 // colours:
 // Light red: #ff5757
@@ -26,14 +26,11 @@ type Props  = {
 // Pale blue: #ebf1ff
 // Light lavender: #c8c7ff
 // Dark gray blue: #303b5a
-const ResultSummarySummaryRow = ({
-  title,
-  score,
-}: Props) => {
+const ResultSummarySummaryRow = ({ title, score }: Props) => {
   const [isLoading, setIsLoading] = useState(true);
 
   return (
-    <div className="my-1 flex w-full rounded-lg bg-[#ebf1ff] px-2 py-2.5  text-xs dark:bg-[#000f34]">
+    <div className="my-1 flex w-full rounded-lg bg-[#ebf1ff] px-2 py-2.5 text-xs dark:bg-[#000f34]">
       <div
         className={`flex flex-row gap-2 text-[10px] font-bold
       ${title === "reaction" && "text-[#ff5757] dark:text-[#dc0000]"}
