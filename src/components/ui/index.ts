@@ -1,5 +1,4 @@
 export { Button } from "./Button";
-export { default as Creation } from "./Creation";
 export { Skeleton } from "./Skeleton";
 export { Slider } from "./Slider";
 export { default as ThemeChanger } from "./ThemeChanger";

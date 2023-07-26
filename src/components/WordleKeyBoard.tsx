@@ -15,7 +15,10 @@ const WordleKeyBoard = ({
 }: Props) => {
   const row1 = "qwertyuiop".toUpperCase().split("");
   const row2 = "asdfghjkl".toUpperCase().split("");
-  const row3 = "zxcvbnm".toUpperCase().split("");
+  const row3 = ["Enter"]
+    .concat("zxcvbnm".toUpperCase().split(""))
+    .concat("Backspace");
+  const board = [row1, row2, row3];
 
   function handleClick(code: string) {
     if (code === "Enter" || code === "Backspace") {
@@ -36,58 +39,25 @@ const WordleKeyBoard = ({
   }
 
   return (
-    <div className="flex flex-col items-center justify-center gap-1">
-      <div className="flex flex-row items-center justify-center gap-0.5">
-        {row1.map((char) => (
-          <Button
-            className={`h-10 w-10 px-1 font-bold text-lg ${
-              usedLetters.has(char) ? "bg-wrong text-white" : ""
-            }`}
-            onClick={() => handleClick(char)}
-            key={char}
-          >
-            {char}
-          </Button>
-        ))}
-      </div>
-      <div className="flex flex-row items-center justify-center gap-0.5">
-        {row2.map((char) => (
-          <Button
-            className={`h-10 w-10 px-1 font-bold text-lg ${
-              usedLetters.has(char) ? "bg-wrong text-white" : ""
-            }`}
-            onClick={() => handleClick(char)}
-            key={char}
-          >
-            {char}
-          </Button>
-        ))}
-      </div>
-      <div className="flex flex-row items-center justify-center gap-0.5">
-        <Button
-          className="h-10 w-auto px-1 font-bold text-lg"
-          onClick={() => handleClick("Enter")}
+    <div className="mb-5 flex flex-col items-center justify-center gap-1">
+      {board.map((row, i) => (
+        <div
+          className="flex flex-row items-center justify-center gap-0.5"
+          key={i}
         >
-          Enter
-        </Button>
-        {row3.map((char) => (
-          <Button
-            className={`h-10 w-10 px-1 font-bold text-lg ${
-              usedLetters.has(char) ? "bg-wrong text-white" : ""
-            }`}
-            onClick={() => handleClick(char)}
-            key={char}
-          >
-            {char}
-          </Button>
-        ))}
-        <Button
-          className="h-10 w-auto px-1 font-bold text-lg"
-          onClick={() => handleClick("Backspace")}
-        >
-          Backspace
-        </Button>
-      </div>
+          {row.map((char) => (
+            <Button
+              className={`h-auto w-auto px-1.5 py-1 text-sm sm:px-2.5 sm:text-lg ${
+                usedLetters.has(char) ? "bg-wrong text-white" : ""
+              }`}
+              onClick={() => handleClick(char)}
+              key={char}
+            >
+              {char}
+            </Button>
+          ))}
+        </div>
+      ))}
     </div>
   );
 };

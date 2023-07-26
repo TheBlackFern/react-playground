@@ -1,13 +1,13 @@
 import { ReactNode } from "react";
 
-interface CreationProps {
+type Props = {
   name: string;
   children: ReactNode;
-}
+};
 
-const Creation: React.FC<CreationProps> = ({ name, children }) => {
+const Creation = ({ name, children }: Props) => {
   return (
-    <div className="mb-4 flex flex-col items-center gap-4">
+    <div className="mx-5 mb-4 flex w-auto flex-col items-center gap-4">
       <h2 className="w-auto border-b pb-3 text-center text-2xl font-semibold">
         {name}!
       </h2>

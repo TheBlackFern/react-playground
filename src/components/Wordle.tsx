@@ -93,7 +93,7 @@ const Wordle = () => {
     setCurrentAttemptNumber(0);
     setCurrentGuessNumber(0);
     setIsGameOver(false);
-    setUsedLetters(new Set<string>())
+    setUsedLetters(new Set<string>());
   }
 
   if (isLoading) return <span>Loading...</span>;
@@ -102,10 +102,13 @@ const Wordle = () => {
     <>
       <div className="relative flex flex-col gap-2">
         <Button
-          className="absolute -right-14 top-1/2 h-11 w-11 -translate-y-1/2"
+          className="absolute -right-10 top-1/2 h-8 w-8 -translate-y-1/2 sm:-right-12 sm:h-9 sm:w-9 md:-right-14 md:h-11 md:w-11"
           onClick={reset}
         >
-          <RefreshCw className="absolute h-7 w-7" strokeWidth={1.5} />
+          <RefreshCw
+            className="absolute h-5 w-5 sm:h-6 sm:w-6 md:h-7 md:w-7"
+            strokeWidth={1.5}
+          />
         </Button>
         {Array.from(Array(6).keys()).map((i) => (
           <WordleRow

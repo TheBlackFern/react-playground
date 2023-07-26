@@ -7,7 +7,7 @@ type Props = {
   onTileClick: MouseEventHandler<HTMLButtonElement>;
   isWinning: boolean;
   gameOver: boolean;
-}
+};
 
 const NaughtsAndCrossesTile = ({
   value,
@@ -18,7 +18,7 @@ const NaughtsAndCrossesTile = ({
   return (
     <Button
       variant="outline"
-      className="h-12 w-12 text-sm font-medium transition-all duration-300"
+      className="h-12 w-12 border-2 text-sm font-medium transition-all duration-300 dark:border"
       onClick={onTileClick}
       disabled={gameOver ? true : false}
     >
@@ -28,7 +28,7 @@ const NaughtsAndCrossesTile = ({
         } absolute h-8 w-8 transition-all duration-300 ${
           gameOver
             ? isWinning
-              ? "text-red-500 dark:text-red-700"
+              ? "text-primary dark:text-primary"
               : "opacity-30"
             : "text-primary opacity-100 dark:text-primary"
         }`}
@@ -40,7 +40,7 @@ const NaughtsAndCrossesTile = ({
         }  ${
           gameOver
             ? isWinning
-              ? "text-red-500 dark:text-red-700"
+              ? "text-primary dark:text-primary"
               : "opacity-30"
             : "text-primary opacity-100 dark:text-primary"
         }`}
