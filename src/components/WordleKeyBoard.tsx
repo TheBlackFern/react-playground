@@ -1,14 +1,17 @@
+import { Colour } from "./Wordle";
 import { Button } from "./ui";
 
 type Props = {
-  usedLetters: Set<string>;
+  letterStatus: {
+    [key: string]: Colour;
+  };
   currentGuessNumber: number;
   setCurrentGuessNumber: React.Dispatch<React.SetStateAction<number>>;
   setCurrentGuess: React.Dispatch<React.SetStateAction<string[]>>;
 };
 
 const WordleKeyBoard = ({
-  usedLetters,
+  letterStatus,
   currentGuessNumber,
   setCurrentGuessNumber,
   setCurrentGuess,
@@ -39,21 +42,23 @@ const WordleKeyBoard = ({
   }
 
   return (
-    <div className="mb-5 flex flex-col items-center justify-center gap-1">
+    <div className="my-5 flex flex-col items-center justify-center gap-1">
       {board.map((row, i) => (
         <div
           className="flex flex-row items-center justify-center gap-0.5"
           key={i}
         >
-          {row.map((char) => (
+          {row.map((key) => (
             <Button
-              className={`h-auto w-auto px-1.5 py-1 text-sm sm:px-2.5 sm:text-lg ${
-                usedLetters.has(char) ? "bg-wrong text-white" : ""
-              }`}
-              onClick={() => handleClick(char)}
-              key={char}
+              className={`h-auto px-1.5 py-1 text-base sm:px-2.5 sm:text-lg ${
+                (letterStatus[key] === "wrong" && "bg-wrong text-white") ||
+                (letterStatus[key] === "almost" && "bg-almost text-white") ||
+                (letterStatus[key] === "correct" && "bg-correct text-white")
+              } ${key === "Enter" || key === "Backspace" ? "w-auto" : "w-7"}`}
+              onClick={() => handleClick(key)}
+              key={key}
             >
-              {char}
+              {key}
             </Button>
           ))}
         </div>

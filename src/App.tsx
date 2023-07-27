@@ -11,14 +11,14 @@ export type ComponentsType = {
 
 function App() {
   const [shownComponents, setShownComponents] = useState<ComponentsType>({
-    Chess: true,
-    Wordle: false,
-    "Naughts and Crosses": false,
+    Wordle: true,
     Polyrhytms: false,
+    "Naughts and Crosses": false,
     "Rock-Paper-Scissors": false,
-    "QR Code": false,
-    "Result Summary": false,
     Rating: false,
+    "Result Summary": false,
+    "QR Code": false,
+    Chess: false,
   });
 
   return (

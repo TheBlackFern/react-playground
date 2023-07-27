@@ -1,9 +1,9 @@
-import { Color } from "./WordleRow";
+import { Colour } from "./Wordle";
 
 type Props = {
   letter: string;
   done: boolean;
-  colour: Color;
+  colour: Colour;
 };
 
 const WordleTile = ({ letter, done, colour }: Props) => {
@@ -12,9 +12,9 @@ const WordleTile = ({ letter, done, colour }: Props) => {
       className={`flex h-9 w-9 items-center justify-center rounded-sm border-2 font-mono text-xl font-bold shadow-sm transition-all duration-300 dark:border dark:shadow-none sm:h-12 sm:w-12 sm:text-3xl ${
         done &&
         "text-white " +
-          ((colour === "is" && "bg-correct ") ||
-            (colour === "has" && "bg-almost") ||
-            (colour === "default" && "bg-wrong"))
+          ((colour === "correct" && "bg-correct ") ||
+            (colour === "almost" && "bg-almost") ||
+            (colour === "wrong" && "bg-wrong"))
       }`}
     >
       {letter}

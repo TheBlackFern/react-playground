@@ -1,30 +1,13 @@
+import { Colour } from "./Wordle";
 import WordleTile from "./WordleTile";
 
 type Props = {
   word: string[];
   done: boolean;
-  answer: string[];
+  colours: Colour[];
 };
 
-export type Color = "default" | "is" | "has";
-
-const WordleRow = ({ word, done, answer }: Props) => {
-  const colours: Color[] = Array(5).fill("default");
-  const notAccurate: string[] = [];
-  answer.forEach((char, idx) => {
-    if (word[idx] == char) {
-      colours[idx] = "is";
-    } else {
-      notAccurate.push(char);
-    }
-  });
-  word.forEach((char, idx) => {
-    if (notAccurate.includes(char) && colours[idx] !== "is") {
-      colours[idx] = "has";
-      notAccurate.splice(notAccurate.indexOf(char), 1);
-    }
-  });
-
+const WordleRow = ({ word, done, colours }: Props) => {
   return (
     <div className="flex gap-1">
       <WordleTile letter={word[0]} colour={colours[0]} done={done} />

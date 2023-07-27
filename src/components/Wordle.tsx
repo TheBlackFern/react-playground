@@ -9,6 +9,11 @@ import { words } from "../assets/data/words";
 import WordleRow from "./WordleRow";
 import WordleKeyBoard from "./WordleKeyBoard";
 
+export type Colour = "wrong" | "almost" | "correct";
+export type LetterStatus = {
+  [key: string]: Colour;
+};
+
 const Wordle = () => {
   const d = new Date().toISOString().split("T")[0];
   const { isLoading, error, data } = useQuery<string, Error>({
@@ -17,19 +22,26 @@ const Wordle = () => {
       fetch(`https://neal.fun/api/password-game/wordle?date=${d}`)
         .then((r) => r.json())
         .then((d) => d.answer),
+    cacheTime: 12 * 60 * 60 * 1000,
     placeholderData: "xxxxx",
   });
 
   const NUM_OF_GUESSES = 6;
   const ANSWER = data!.toUpperCase().split("");
+  // const ANSWER = "XXXXA".split("");
   const [key, code, changed] = useKeyDown();
-  const [usedLetters, setUsedLetters] = useState(new Set<string>());
   const [isGameOver, setIsGameOver] = useState(false);
+
   const [currentGuessNumber, setCurrentGuessNumber] = useState(0);
   const [currentGuess, setCurrentGuess] = useState<string[]>(Array(5).fill(""));
   const [currentAttemptNumber, setCurrentAttemptNumber] = useState(0);
   const [attempts, setAttempts] = useState<string[][]>(
     Array(NUM_OF_GUESSES).fill(Array(ANSWER.length).fill(""))
+  );
+
+  const [letterStatus, setLetterStatus] = useState<LetterStatus>({});
+  const [rowColours, setRowColours] = useState<Colour[][]>(
+    Array(NUM_OF_GUESSES).fill(Array(ANSWER.length).fill("wrong"))
   );
 
   useEffect(() => {
@@ -70,9 +82,52 @@ const Wordle = () => {
         return prev;
       });
 
-      currentGuess.forEach((letter) =>
-        setUsedLetters((prev) => prev.add(letter))
-      );
+      const newRowColours: Colour[] = Array(5).fill("wrong");
+      const newLetterStatus: LetterStatus = letterStatus;
+      const notSeen = [...ANSWER];
+
+      // we split these in two, as we have to account for a guess to have
+      // two letter, incorrect one before correct one (g: PASTA, a: PIZZA)
+      // in which case we will highlight the first A as almost correct and
+      // the second A as correct, cause being correct overrides being in the
+      // word in this case, but even if we checked for not being seen first,
+      // the first A would still be almost correct, while the second would now
+      // be rendered as wrong. So, we have to know all correct ones ahead of time
+      currentGuess.forEach((char, idx) => {
+        if (char === ANSWER[idx]) {
+          newRowColours[idx] = "correct";
+          newLetterStatus[char] = "correct";
+          notSeen.splice(notSeen.indexOf(char), 1);
+        }
+      });
+
+      currentGuess.forEach((char, idx) => {
+        if (char === ANSWER[idx]) {
+          return;
+        }
+        if (notSeen.includes(char)) {
+          newRowColours[idx] = "almost";
+          if (newLetterStatus[char] !== "correct") {
+            newLetterStatus[char] = "almost";
+          }
+          notSeen.splice(notSeen.indexOf(char), 1);
+        } else {
+          newRowColours[idx] = "wrong";
+          if (
+            newLetterStatus[char] !== "correct" &&
+            newLetterStatus[char] !== "almost"
+          ) {
+            newLetterStatus[char] = "wrong";
+          }
+          console.log(ANSWER);
+        }
+      });
+
+      setRowColours((prev) => ({
+        ...prev,
+        ...{ [currentAttemptNumber]: newRowColours },
+      }));
+      setLetterStatus((prev) => ({ ...prev, ...newLetterStatus }));
       setCurrentAttemptNumber((prev) => prev + 1);
       setCurrentGuess(Array(ANSWER.length).fill(""));
       if (currentGuess.join("") === ANSWER.join("") || isGameOver) {
@@ -93,7 +148,10 @@ const Wordle = () => {
     setCurrentAttemptNumber(0);
     setCurrentGuessNumber(0);
     setIsGameOver(false);
-    setUsedLetters(new Set<string>());
+    setLetterStatus({});
+    setRowColours(
+      Array(NUM_OF_GUESSES).fill(Array(ANSWER.length).fill("wrong"))
+    );
   }
 
   if (isLoading) return <span>Loading...</span>;
@@ -114,13 +172,13 @@ const Wordle = () => {
           <WordleRow
             word={currentAttemptNumber == i ? currentGuess : attempts[i]}
             done={currentAttemptNumber > i}
-            answer={ANSWER}
+            colours={rowColours[i]}
             key={i}
           />
         ))}
       </div>
       <WordleKeyBoard
-        usedLetters={usedLetters}
+        letterStatus={letterStatus}
         setCurrentGuess={setCurrentGuess}
         setCurrentGuessNumber={setCurrentGuessNumber}
         currentGuessNumber={currentGuessNumber}
