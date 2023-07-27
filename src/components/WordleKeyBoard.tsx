@@ -1,3 +1,4 @@
+import { ArrowBigLeftDashIcon } from "lucide-react";
 import { Colour } from "./Wordle";
 import { Button } from "./ui";
 
@@ -50,15 +51,19 @@ const WordleKeyBoard = ({
         >
           {row.map((key) => (
             <Button
-              className={`h-auto px-1.5 py-1 text-base sm:px-2.5 sm:text-lg ${
+              className={`h-11 px-1.5 py-1 sm:px-2.5 ${
                 (letterStatus[key] === "wrong" && "bg-wrong text-white") ||
                 (letterStatus[key] === "almost" && "bg-almost text-white") ||
                 (letterStatus[key] === "correct" && "bg-correct text-white")
-              } ${key === "Enter" || key === "Backspace" ? "w-auto" : "w-7"}`}
+              } ${
+                key === "Enter" || key === "Backspace"
+                  ? "w-auto text-sm"
+                  : "w-auto text-base xs:w-8 sm:w-9 sm:text-lg "
+              }`}
               onClick={() => handleClick(key)}
               key={key}
             >
-              {key}
+              {key === "Backspace" ? <ArrowBigLeftDashIcon size={32} /> : key}
             </Button>
           ))}
         </div>
