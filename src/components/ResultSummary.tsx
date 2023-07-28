@@ -31,7 +31,7 @@ const ResultSummary = () => {
 
   return (
     <ResultContext.Provider value={val}>
-      <div className="mx-5 mt-17 flex w-auto scale-125 flex-col justify-center sm:mt-10 sm:flex-row sm:pl-5">
+      <div className="mx-5 mb-10 mt-17 flex w-auto scale-125 flex-col justify-center sm:mt-10 sm:flex-row sm:pl-5">
         <ResultSummaryResult />
         <ResultSummarySummary />
       </div>

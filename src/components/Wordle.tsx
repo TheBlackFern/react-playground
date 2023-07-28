@@ -87,9 +87,11 @@ const Wordle = () => {
     Array(NUM_OF_GUESSES).fill(Array(ANSWER.length).fill("wrong"))
   );
 
+  const keyRegex = /Key[A-Z]/;
+
   useEffect(() => {
     // all letter have codes of KeyX where X is the letter
-    if (code.includes("Key")) {
+    if (keyRegex.test(code)) {
       if (currentGuessNumber >= ANSWER.length) {
         return;
       }

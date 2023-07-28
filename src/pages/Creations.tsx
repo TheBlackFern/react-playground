@@ -1,4 +1,3 @@
-import { Creation } from "../components";
 import {
   NaughtsAndCrossesBoard,
   PolyrhytmBoard,
@@ -8,6 +7,8 @@ import {
   Rating,
   Wordle,
   ChessBoard,
+  CaptchaWords,
+  Creation,
 } from "../components";
 import { ComponentsType } from "../App";
 
@@ -15,6 +16,7 @@ import { ComponentsType } from "../App";
 // otherwise is says that these are properties and doesn't understand
 // that Components[key] is a JSX.Element
 export const Components: { [key: string]: JSX.Element } = {
+  Captcha: <CaptchaWords />,
   Chess: <ChessBoard />,
   Wordle: <Wordle />,
   "Naughts and Crosses": <NaughtsAndCrossesBoard />,

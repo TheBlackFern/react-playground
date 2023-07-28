@@ -11,7 +11,8 @@ export type ComponentsType = {
 
 function App() {
   const [shownComponents, setShownComponents] = useState<ComponentsType>({
-    Wordle: true,
+    Captcha: true,
+    Wordle: false,
     Polyrhytms: false,
     "Naughts and Crosses": false,
     "Rock-Paper-Scissors": false,

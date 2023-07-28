@@ -8,3 +8,4 @@ export { default as ResultSummary } from "./ResultSummary";
 export { default as RockPaperScissors } from "./RockPaperScissors";
 export { default as Wordle } from "./Wordle";
 export { default as ChessBoard } from "./ChessBoard";
+export { default as CaptchaWords } from "./CaptchaWords";
