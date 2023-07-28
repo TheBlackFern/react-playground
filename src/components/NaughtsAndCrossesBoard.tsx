@@ -1,7 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import NaughtsAndCrossesTile from "./NaughtsAndCrossesTile";
-import { Button } from "./ui/";
-import { RefreshCw } from "lucide-react";
+import { ResetButton } from "./ui/";
 
 function NaughtsAndCrossesBoard() {
   const [values, setValues] = useState(Array(9).fill(null));
@@ -58,12 +57,7 @@ function NaughtsAndCrossesBoard() {
 
   return (
     <div className="relative flex w-40 flex-row gap-3 pl-2">
-      <Button
-        className="absolute -right-10 top-1/2 h-10 w-10 -translate-y-1/2"
-        onClick={resetBoard}
-      >
-        <RefreshCw className="absolute h-6 w-6" strokeWidth={1.5} />
-      </Button>
+      <ResetButton reset={resetBoard} />
       <div className={`relative grid grid-cols-3 transition-all duration-300`}>
         <NaughtsAndCrossesTile
           value={values[0]}

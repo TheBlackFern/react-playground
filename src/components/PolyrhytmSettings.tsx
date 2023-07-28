@@ -9,7 +9,7 @@ type Props = {
   handleChangeVolume: (val: number[]) => void;
   isPlaying: boolean;
   syncTime: number;
-}
+};
 
 const PolyrhytmSettings = ({
   handleTogglePlay,
@@ -41,7 +41,10 @@ const PolyrhytmSettings = ({
         className="col-span-2 h-2 w-24 cursor-pointer appearance-none rounded-lg bg-destructive text-destructive dark:bg-destructive"
       ></Slider>
       <Volume2 className="col-span-1" size={16} />
-      <Button onClick={handleTogglePlay} className="col-span-5 h-6 w-12 py-3">
+      <Button
+        onClick={handleTogglePlay}
+        className="col-span-5 mt-3 h-8 w-20 text-lg"
+      >
         {isPlaying ? "Pause" : "Start"}
       </Button>
     </div>

@@ -2,17 +2,60 @@ import { useEffect, useState } from "react";
 import { useQuery } from "react-query";
 
 import { useKeyDown } from "../lib/utils";
-import { Button } from "./ui";
-import { RefreshCw } from "lucide-react";
 
 import { words } from "../assets/data/words";
 import WordleRow from "./WordleRow";
 import WordleKeyBoard from "./WordleKeyBoard";
+import ResetButton from "./ui/ResetButton";
 
 export type Colour = "wrong" | "almost" | "correct";
 export type LetterStatus = {
   [key: string]: Colour;
 };
+
+function checkGuess(
+  guess: string[],
+  answer: string[],
+  oldCheckedLetters: LetterStatus
+): [Colour[], LetterStatus] {
+  const newRowColours: Colour[] = Array(answer.length).fill("wrong");
+  const newLetterStatus: LetterStatus = oldCheckedLetters;
+  const notSeen = [...answer];
+
+  // we need two cycles, as we have to account for a guess to have
+  // two letter, incorrect one before correct one (g: PASTA, a: PIZZA)
+  // as otherwise we will highlight the first A as almost correct and
+  // the second A as correct, cause being correct is checked instead of
+  // being in the in a word in this case, but even if we checked for not
+  // being seen first, the first A would still be almost correct, while
+  // the second would now  be rendered as wrong
+  // So, we have to know all correct ones ahead of time
+  guess.forEach((char, idx) => {
+    if (char !== answer[idx]) return;
+    newRowColours[idx] = "correct";
+    newLetterStatus[char] = "correct";
+    notSeen.splice(notSeen.indexOf(char), 1);
+  });
+
+  guess.forEach((char, idx) => {
+    if (char === answer[idx]) return;
+
+    if (notSeen.includes(char)) {
+      newRowColours[idx] = "almost";
+      if (newLetterStatus[char] !== "correct") {
+        newLetterStatus[char] = "almost";
+      }
+      notSeen.splice(notSeen.indexOf(char), 1);
+    } else {
+      newRowColours[idx] = "wrong";
+      if (!Object.keys(newLetterStatus).includes(char)) {
+        newLetterStatus[char] = "wrong";
+      }
+    }
+  });
+
+  return [newRowColours, newLetterStatus];
+}
 
 const Wordle = () => {
   const d = new Date().toISOString().split("T")[0];
@@ -82,46 +125,11 @@ const Wordle = () => {
         return prev;
       });
 
-      const newRowColours: Colour[] = Array(5).fill("wrong");
-      const newLetterStatus: LetterStatus = letterStatus;
-      const notSeen = [...ANSWER];
-
-      // we split these in two, as we have to account for a guess to have
-      // two letter, incorrect one before correct one (g: PASTA, a: PIZZA)
-      // in which case we will highlight the first A as almost correct and
-      // the second A as correct, cause being correct overrides being in the
-      // word in this case, but even if we checked for not being seen first,
-      // the first A would still be almost correct, while the second would now
-      // be rendered as wrong. So, we have to know all correct ones ahead of time
-      currentGuess.forEach((char, idx) => {
-        if (char === ANSWER[idx]) {
-          newRowColours[idx] = "correct";
-          newLetterStatus[char] = "correct";
-          notSeen.splice(notSeen.indexOf(char), 1);
-        }
-      });
-
-      currentGuess.forEach((char, idx) => {
-        if (char === ANSWER[idx]) {
-          return;
-        }
-        if (notSeen.includes(char)) {
-          newRowColours[idx] = "almost";
-          if (newLetterStatus[char] !== "correct") {
-            newLetterStatus[char] = "almost";
-          }
-          notSeen.splice(notSeen.indexOf(char), 1);
-        } else {
-          newRowColours[idx] = "wrong";
-          if (
-            newLetterStatus[char] !== "correct" &&
-            newLetterStatus[char] !== "almost"
-          ) {
-            newLetterStatus[char] = "wrong";
-          }
-          console.log(ANSWER);
-        }
-      });
+      const [newRowColours, newLetterStatus] = checkGuess(
+        currentGuess,
+        ANSWER,
+        letterStatus
+      );
 
       setRowColours((prev) => ({
         ...prev,
@@ -159,18 +167,10 @@ const Wordle = () => {
   return (
     <>
       <div className="relative flex flex-col gap-2">
-        <Button
-          className="absolute -right-10 top-1/2 h-8 w-8 -translate-y-1/2 sm:-right-12 sm:h-9 sm:w-9 md:-right-14 md:h-11 md:w-11"
-          onClick={reset}
-        >
-          <RefreshCw
-            className="absolute h-5 w-5 sm:h-6 sm:w-6 md:h-7 md:w-7"
-            strokeWidth={1.5}
-          />
-        </Button>
-        {Array.from(Array(6).keys()).map((i) => (
+        <ResetButton className="-right-10" reset={reset} />
+        {attempts.map((word, i) => (
           <WordleRow
-            word={currentAttemptNumber == i ? currentGuess : attempts[i]}
+            word={currentAttemptNumber == i ? currentGuess : word}
             done={currentAttemptNumber > i}
             colours={rowColours[i]}
             key={i}

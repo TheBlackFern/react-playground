@@ -13,7 +13,7 @@ export default {
     },
     extend: {
       screens: {
-        xs: "320px",
+        xs: "360px",
       },
       colors: {
         border: "hsl(var(--border))",

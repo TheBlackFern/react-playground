@@ -34,12 +34,12 @@ function covertFEN(fen: string) {
 }
 
 const ChessBoard = () => {
-  const Board = covertFEN(
-    "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR/RNBQKBNR"
-  );
+  const Board = covertFEN("rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR");
 
   return (
-    <div className="box-content h-auto w-auto border-8 border-primary dark:border-secondary">
+    <div className="relative box-content h-auto w-auto border-8 border-primary dark:border-secondary">
+      {/* it's a ruler :) */}
+      {/* <div className="absolute h-72 w-[calc(18px+5*36px)] bg-red-900 sm:h-96 sm:w-[calc(24px+0*48px)]  md:h-[448px] md:w-[calc(28px+0*56px)]"></div> */}
       {Board.map((row, i) => (
         <div className="flex flex-row" key={i}>
           {row.map((piece, j) => (

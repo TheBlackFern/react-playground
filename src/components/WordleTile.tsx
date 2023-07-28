@@ -9,7 +9,7 @@ type Props = {
 const WordleTile = ({ letter, done, colour }: Props) => {
   return (
     <div
-      className={`flex h-9 w-9 items-center justify-center rounded-sm border-2 font-mono text-xl font-bold shadow-sm transition-all duration-300 dark:border dark:shadow-none sm:h-12 sm:w-12 sm:text-3xl ${
+      className={`flex h-12 w-12 items-center justify-center rounded-sm border-2 font-mono text-xl font-bold shadow-sm transition-all duration-300 dark:border dark:shadow-none sm:h-12 sm:w-12 sm:text-3xl ${
         done &&
         "text-white " +
           ((colour === "correct" && "bg-correct ") ||

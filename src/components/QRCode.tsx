@@ -16,7 +16,9 @@ const QRCode = () => {
   return (
     <div className="flex h-auto w-80 flex-col items-center justify-center rounded-2xl border px-3 pb-10 pt-4 text-center leading-tight shadow-md">
       <img
-        className="mb-6 h-72 w-72 rounded-xl"
+        className={`mb-6 h-72 w-72 rounded-xl ${
+          isLoading ? "hidden" : "block"
+        }`}
         src={qrcode}
         alt="qrcode"
         onLoad={() => setIsLoading(false)}

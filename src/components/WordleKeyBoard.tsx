@@ -58,7 +58,7 @@ const WordleKeyBoard = ({
               } ${
                 key === "Enter" || key === "Backspace"
                   ? "w-auto text-sm"
-                  : "w-auto text-base xs:w-8 sm:w-9 sm:text-lg "
+                  : "w-auto text-base xs:w-9 sm:w-11 sm:text-lg "
               }`}
               onClick={() => handleClick(key)}
               key={key}

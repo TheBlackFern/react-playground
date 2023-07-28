@@ -1,13 +1,29 @@
+import { useState } from "react";
 import ThankYou from "../assets/images/illustration-thank-you.svg";
+import { Skeleton } from "./ui";
 
 type Props = {
   rating: number;
-}
+};
 
 const RatingThankYou = ({ rating }: Props) => {
+  const imageElement = new Image();
+  imageElement.src = ThankYou;
+  const [isLoading, setIsLoading] = useState(true);
+
   return (
     <>
-      <img src={ThankYou} className="mb-2 h-24 w-36 self-center" />
+      {
+        <img
+          className={`mb-2 h-24 w-36 self-center ${
+            isLoading ? "hidden" : "block"
+          }`}
+          src={ThankYou}
+          alt="thank you picture"
+          onLoad={() => setIsLoading(false)}
+        />
+      }
+      {isLoading && <Skeleton className="mb-2 h-24 w-36 self-center" />}
       <p className="mb-2 w-36 self-center rounded-3xl bg-secondary px-2 py-1.5 text-center  text-xs text-lime-700 dark:text-lime-500">
         You selected {rating} out of 5
       </p>
