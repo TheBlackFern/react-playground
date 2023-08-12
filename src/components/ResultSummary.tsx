@@ -1,4 +1,4 @@
-import { createContext } from "react";
+import * as React from "react";
 import ResultSummaryResult from "./ResultSummaryResult";
 import ResultSummarySummary from "./ResultSummarySummary";
 
@@ -9,7 +9,7 @@ type Score = {
   visual: number;
 };
 
-export const ResultContext = createContext<Score>({
+export const ResultContext = React.createContext<Score>({
   reaction: 80,
   memory: 92,
   verbal: 61,

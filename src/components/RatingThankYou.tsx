@@ -1,4 +1,4 @@
-import { useState } from "react";
+import * as React from "react";
 import ThankYou from "../assets/images/illustration-thank-you.svg";
 import { Skeleton } from "./ui";
 
@@ -9,7 +9,7 @@ type Props = {
 const RatingThankYou = ({ rating }: Props) => {
   const imageElement = new Image();
   imageElement.src = ThankYou;
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = React.useState(true);
 
   return (
     <>

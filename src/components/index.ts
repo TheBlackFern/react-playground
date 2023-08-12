@@ -9,3 +9,4 @@ export { default as RockPaperScissors } from "./RockPaperScissors";
 export { default as Wordle } from "./Wordle";
 export { default as ChessBoard } from "./ChessBoard";
 export { default as CaptchaWords } from "./CaptchaWords";
+export { default as GuessColor } from "./GuessColor";

@@ -1,5 +1,5 @@
+import * as React from "react";
 import { clsx, type ClassValue } from "clsx";
-import { useEffect, useState } from "react";
 import { twMerge } from "tailwind-merge";
 import { PlayFunction } from "use-sound/dist/types";
 
@@ -14,11 +14,11 @@ export function useTheme(): [theme: string, setTheme: (theme: string) => void] {
   const isUserPrefDark = window.matchMedia(
     "(prefers-color-scheme: dark)"
   ).matches;
-  const [systemTheme, setSystemTheme] = useState(isUserPrefDark);
-  const [theme, setTheme] = useState(isUserPrefDark ? "dark" : "light");
-  const [themeStrategy, setThemeStrategy] = useState("system");
+  const [systemTheme, setSystemTheme] = React.useState(isUserPrefDark);
+  const [theme, setTheme] = React.useState(isUserPrefDark ? "dark" : "light");
+  const [themeStrategy, setThemeStrategy] = React.useState("system");
 
-  useEffect(() => {
+  React.useEffect(() => {
     const mq = window.matchMedia("(prefers-color-scheme: dark)");
     if (mq.matches) {
       setSystemTheme(true);
@@ -26,7 +26,7 @@ export function useTheme(): [theme: string, setTheme: (theme: string) => void] {
     mq.addEventListener("change", (e) => setSystemTheme(e.matches));
   }, []);
 
-  useEffect(() => {
+  React.useEffect(() => {
     switch (themeStrategy) {
       case "light":
         setTheme("light");
@@ -54,9 +54,9 @@ export function useRotation(
   angularVelocity: number
 ): [angle: number] {
   const renderTime = 15;
-  const [angle, setAngle] = useState(0);
+  const [angle, setAngle] = React.useState(0);
 
-  useEffect(() => {
+  React.useEffect(() => {
     setAngle((prev) => prev + (renderTime * angularVelocity) / 1000);
   }, [elapsedTime]);
 
@@ -74,13 +74,13 @@ export function useCircleAnimation(
   play: PlayFunction
 ): [lightUp: boolean] {
   // this is the angle of the next full revolution, so 180, 360, 540, 720, 1080...
-  const [nextFullRevTime, setNextFullRevTime] = useState(180);
-  const [lightUp, setLightUp] = useState(false);
+  const [nextFullRevTime, setNextFullRevTime] = React.useState(180);
+  const [lightUp, setLightUp] = React.useState(false);
 
   // This is the most reliable solution as when time is stopped we don't get lights and
   // sounds firing, but at the same time we are spot on with the timing. Also changing syncTime
   // doesn't affect anything (as apposed to having it be dependant on elapsed time and nextFullRevTime)
-  useEffect(() => {
+  React.useEffect(() => {
     if (angle >= nextFullRevTime) {
       play();
       setLightUp(true);
@@ -98,11 +98,11 @@ export function useCircleAnimation(
  * Returns last pressed key and its code.
  */
 export function useKeyDown(): [string, string, boolean] {
-  const [key, setKey] = useState("");
-  const [code, setCode] = useState("");
-  const [changed, setChanged] = useState(false);
+  const [key, setKey] = React.useState("");
+  const [code, setCode] = React.useState("");
+  const [changed, setChanged] = React.useState(false);
 
-  useEffect(() => {
+  React.useEffect(() => {
     function onKeyPress(e: KeyboardEvent) {
       const { key, code } = e;
       if (code.includes("Key")) {

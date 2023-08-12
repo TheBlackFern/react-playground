@@ -1,7 +1,7 @@
-import { useState } from "react";
+import * as React from "react";
+import { QueryClient, QueryClientProvider } from "react-query";
 import NavBar from "./pages/NavBar";
 import Creations from "./pages/Creations";
-import { QueryClient, QueryClientProvider } from "react-query";
 
 const queryClient = new QueryClient();
 
@@ -10,8 +10,9 @@ export type ComponentsType = {
 };
 
 function App() {
-  const [shownComponents, setShownComponents] = useState<ComponentsType>({
-    Captcha: true,
+  const [shownComponents, setShownComponents] = React.useState<ComponentsType>({
+    Captcha: false,
+    "Guess Color": true,
     Wordle: false,
     Polyrhytms: false,
     "Naughts and Crosses": false,

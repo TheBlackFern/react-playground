@@ -1,10 +1,10 @@
-import { useState } from "react";
+import * as React from "react";
 import RatingSelect from "./RatingSelect";
 import RatingThankYou from "./RatingThankYou";
 
 const Rating = () => {
-  const [isSubmitted, setIsSubmitted] = useState(false);
-  const [rating, setRating] = useState(5);
+  const [isSubmitted, setIsSubmitted] = React.useState(false);
+  const [rating, setRating] = React.useState(5);
 
   return (
     <div className="flex h-80 w-80 flex-col gap-3 rounded-xl px-5 py-7 shadow-lg transition-all duration-100 dark:border dark:shadow-none">

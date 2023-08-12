@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import * as React from "react";
 import { useQuery } from "react-query";
 
 import { useKeyDown } from "../lib/utils";
@@ -73,23 +73,25 @@ const Wordle = () => {
   const ANSWER = data!.toUpperCase().split("");
   // const ANSWER = "XXXXA".split("");
   const [key, code, changed] = useKeyDown();
-  const [isGameOver, setIsGameOver] = useState(false);
+  const [isGameOver, setIsGameOver] = React.useState(false);
 
-  const [currentGuessNumber, setCurrentGuessNumber] = useState(0);
-  const [currentGuess, setCurrentGuess] = useState<string[]>(Array(5).fill(""));
-  const [currentAttemptNumber, setCurrentAttemptNumber] = useState(0);
-  const [attempts, setAttempts] = useState<string[][]>(
+  const [currentGuessNumber, setCurrentGuessNumber] = React.useState(0);
+  const [currentGuess, setCurrentGuess] = React.useState<string[]>(
+    Array(5).fill("")
+  );
+  const [currentAttemptNumber, setCurrentAttemptNumber] = React.useState(0);
+  const [attempts, setAttempts] = React.useState<string[][]>(
     Array(NUM_OF_GUESSES).fill(Array(ANSWER.length).fill(""))
   );
 
-  const [letterStatus, setLetterStatus] = useState<LetterStatus>({});
-  const [rowColours, setRowColours] = useState<Colour[][]>(
+  const [letterStatus, setLetterStatus] = React.useState<LetterStatus>({});
+  const [rowColours, setRowColours] = React.useState<Colour[][]>(
     Array(NUM_OF_GUESSES).fill(Array(ANSWER.length).fill("wrong"))
   );
 
   const keyRegex = /Key[A-Z]/;
 
-  useEffect(() => {
+  React.useEffect(() => {
     // all letter have codes of KeyX where X is the letter
     if (keyRegex.test(code)) {
       if (currentGuessNumber >= ANSWER.length) {

@@ -1,11 +1,11 @@
-import { useState } from "react";
+import * as React from "react";
 import TextTransition, { presets } from "react-text-transition";
 import { Button } from "./ui/Button";
 
 function RockPaperScissors() {
-  const [userGesture, setUserGesture] = useState<string>();
-  const [enemyGesture, setEnemyGesture] = useState<string>();
-  const [result, setResult] = useState("");
+  const [userGesture, setUserGesture] = React.useState<string>();
+  const [enemyGesture, setEnemyGesture] = React.useState<string>();
+  const [result, setResult] = React.useState("");
 
   function handlePickGesture(sign: string) {
     const gestures = ["✊", "✋", "✌️"];

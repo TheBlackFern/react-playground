@@ -51,6 +51,7 @@ const WordleKeyBoard = ({
         >
           {row.map((key) => (
             <Button
+              variant={"outline"}
               className={`h-11 px-1.5 py-1 sm:px-2.5 ${
                 (letterStatus[key] === "wrong" && "bg-wrong text-white") ||
                 (letterStatus[key] === "almost" && "bg-almost text-white") ||

@@ -1,9 +1,9 @@
-import { useContext } from "react";
+import * as React from "react";
 import { ResultContext } from "./ResultSummary";
 import ResultSummarySummaryRow from "./ResultSummarySummaryRow";
 
 const ResultSummarySummary = () => {
-  const result = useContext(ResultContext);
+  const result = React.useContext(ResultContext);
 
   return (
     <div className="z-1 flex h-auto w-52 -translate-y-5 flex-col items-center justify-center rounded-xl p-4 pt-9 shadow-sm dark:border sm:-translate-x-5 sm:translate-y-0 sm:py-3 sm:pl-9 sm:pr-4 sm:pt-5">

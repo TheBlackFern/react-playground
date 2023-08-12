@@ -1,10 +1,9 @@
-import { MouseEventHandler } from "react";
 import { Circle, X } from "lucide-react";
 import { Button } from "./ui";
 
 type Props = {
   value: string | null;
-  onTileClick: MouseEventHandler<HTMLButtonElement>;
+  onTileClick: React.MouseEventHandler<HTMLButtonElement>;
   isWinning: boolean;
   gameOver: boolean;
 };

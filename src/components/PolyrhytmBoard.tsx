@@ -1,18 +1,18 @@
-import { useRef, useState } from "react";
+import * as React from "react";
 import PolyrhytmCircle from "./PolyrhytmCircle";
 import PolyrhytmSettings from "./PolyrhytmSettings";
 
 const PolyrhytmBoard = () => {
-  const [isPlaying, setIsPlaying] = useState(false);
+  const [isPlaying, setIsPlaying] = React.useState(false);
 
   // at the end of the day, we don't use it for time measurement,
   // we use it to synchronise all circles: this way we have just one
   // source of truth, when elapsed time changes, they all update
   // simulataneously as opposed to one by one, causing desync
-  const [elapsedTime, setElapsedTime] = useState(0);
-  const [syncTime, setSyncTime] = useState(600);
-  const [volume, setVolume] = useState(0.5);
-  const timer = useRef<number>();
+  const [elapsedTime, setElapsedTime] = React.useState(0);
+  const [syncTime, setSyncTime] = React.useState(600);
+  const [volume, setVolume] = React.useState(0.5);
+  const timer = React.useRef<number>();
 
   const renderTime = 15; // ~ 60 fps
   const totalNumber = 21;

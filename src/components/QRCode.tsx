@@ -1,4 +1,4 @@
-import { useState } from "react";
+import * as React from "react";
 import qrcode from "../assets/images/image-qr-code.png";
 import { Skeleton } from "./ui";
 
@@ -11,7 +11,7 @@ const QRCode = () => {
   const imageElement = new Image();
   imageElement.src = qrcode;
 
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = React.useState(true);
 
   return (
     <div className="flex h-auto w-80 flex-col items-center justify-center rounded-2xl border px-3 pb-10 pt-4 text-center leading-tight shadow-md">

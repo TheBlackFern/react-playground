@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import * as React from "react";
 import { ResultContext } from "./ResultSummary";
 
 // colours:
@@ -16,7 +16,7 @@ import { ResultContext } from "./ResultSummary";
 // violet blue (circle): #4e21ca opacity 0
 // persian blue (circle): #2421ca opacity 1
 const ResultSummaryResult = () => {
-  const result = useContext(ResultContext);
+  const result = React.useContext(ResultContext);
 
   return (
     <div className="z-10 flex h-auto w-52 flex-col items-center rounded-2xl bg-gradient-to-b from-[#7857ff] to-[#2e2be9]/[0.95] p-5 text-center font-hanken dark:from-[#170075] dark:to-[#0e0c79]/[0.95] sm:px-9">

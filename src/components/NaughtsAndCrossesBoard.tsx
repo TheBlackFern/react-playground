@@ -1,15 +1,15 @@
-import { useState, useEffect, useRef } from "react";
+import * as React from "react";
 import NaughtsAndCrossesTile from "./NaughtsAndCrossesTile";
 import { ResetButton } from "./ui/";
 
 function NaughtsAndCrossesBoard() {
-  const [values, setValues] = useState(Array(9).fill(null));
-  const [isCurrentX, setIsCurrentX] = useState(true);
-  const [isGameOver, setIsGameOver] = useState(false);
-  const winningRef = useRef(Array(9).fill(false));
+  const [values, setValues] = React.useState(Array(9).fill(null));
+  const [isCurrentX, setIsCurrentX] = React.useState(true);
+  const [isGameOver, setIsGameOver] = React.useState(false);
+  const winningRef = React.useRef(Array(9).fill(false));
 
   // after each rerender check all lines to see if anybody won
-  useEffect(() => {
+  React.useEffect(() => {
     const linesToCheck = [
       [0, 1, 2],
       [3, 4, 5],

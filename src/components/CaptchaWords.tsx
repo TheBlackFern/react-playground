@@ -1,10 +1,10 @@
 import spinner from "../assets/images/captcha_spinner.gif";
 import logo from "../assets/images/captcha_logo.svg";
 import { Button } from "./ui";
-import { useState } from "react";
+import * as React from "react";
 
 const CaptchaWords = () => {
-  const [removeButton, setRemoveButton] = useState(false);
+  const [removeButton, setRemoveButton] = React.useState(false);
 
   return (
     <div className=" font-hanken">
