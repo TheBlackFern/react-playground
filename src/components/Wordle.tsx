@@ -1,12 +1,11 @@
 import * as React from "react";
 import { useQuery } from "react-query";
 
-import { useKeyDown } from "../lib/utils";
-
 import { words } from "../assets/data/words";
 import WordleRow from "./WordleRow";
 import WordleKeyBoard from "./WordleKeyBoard";
 import ResetButton from "./ui/ResetButton";
+import { useKeyDown } from "../hooks/useKeyDown";
 
 export type Colour = "wrong" | "almost" | "correct";
 export type LetterStatus = {

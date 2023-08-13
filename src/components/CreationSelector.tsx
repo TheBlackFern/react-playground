@@ -14,23 +14,21 @@ type Props = {
   className?: string;
   shownComponents: ComponentsType;
   setShownComponents: React.Dispatch<React.SetStateAction<ComponentsType>>;
-}
+};
 
 const CreationSelector = ({
   className,
   shownComponents,
   setShownComponents,
 }: Props) => {
-
-  // generalised function for all components which is used to create 
+  // generalised function for all components which is used to create
   // partial functions for all components
   function handleChecked(key: boolean, componentName: string) {
     const updPart = {
-      [componentName]: key
-    }
-    setShownComponents((prev) => ({...prev, ...updPart}))
+      [componentName]: key,
+    };
+    setShownComponents((prev) => ({ ...prev, ...updPart }));
   }
-
 
   return (
     <DropdownMenu>
@@ -43,9 +41,12 @@ const CreationSelector = ({
         <DropdownMenuLabel>Render Components</DropdownMenuLabel>
         <DropdownMenuSeparator />
         {Object.keys(shownComponents).map((key) => (
-          <DropdownMenuCheckboxItem 
-            checked={shownComponents[key]} 
-            onCheckedChange={_.partial(handleChecked, _, key)} 
+          <DropdownMenuCheckboxItem
+            checked={shownComponents[key]}
+            onCheckedChange={_.partial(handleChecked, _, key)}
+            onSelect={(e) => {
+              e.preventDefault();
+            }}
             key={key}
           >
             {key}

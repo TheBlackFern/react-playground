@@ -6,9 +6,9 @@ function RockPaperScissors() {
   const [userGesture, setUserGesture] = React.useState<string>();
   const [enemyGesture, setEnemyGesture] = React.useState<string>();
   const [result, setResult] = React.useState("");
+  const gestures = ["✊", "✋", "✌️"];
 
   function handlePickGesture(sign: string) {
-    const gestures = ["✊", "✋", "✌️"];
     const randomIndex = Math.floor(Math.random() * gestures.length);
     const randomGesture = gestures[randomIndex];
     setEnemyGesture(randomGesture);
@@ -35,27 +35,15 @@ function RockPaperScissors() {
   return (
     <div className="flex flex-col items-center justify-center">
       <div className="flex space-x-3">
-        <Button
-          variant="outline"
-          className="h-12 w-12 text-xl"
-          onClick={() => handlePickGesture("✊")}
-        >
-          ✊
-        </Button>
-        <Button
-          variant="outline"
-          className="h-12 w-12 text-xl"
-          onClick={() => handlePickGesture("✋")}
-        >
-          ✋
-        </Button>
-        <Button
-          variant="outline"
-          className="h-12 w-12 text-xl"
-          onClick={() => handlePickGesture("✌️")}
-        >
-          ✌️
-        </Button>
+        {gestures.map((g) => (
+          <Button
+            className="h-12 w-12 text-xl"
+            onClick={() => handlePickGesture(g)}
+            key={g}
+          >
+            {g}
+          </Button>
+        ))}
       </div>
       <div className="relative mb-10 mt-4 flex flex-col items-center justify-between space-y-3 text-center">
         <TextTransition
@@ -67,10 +55,10 @@ function RockPaperScissors() {
         >
           <div className="flex flex-row">
             <p className="w-8">{userGesture ? `${userGesture}` : ""}</p>
-            <p className="w-8">{userGesture ? "VS" : "Pick!"}</p>
+            <p className="w-8 font-thin">{userGesture ? "VS" : "Pick!"}</p>
             <p className="w-8">{userGesture ? `${enemyGesture}` : ""}</p>
           </div>
-          {result}
+          <p className="mt-3 font-thin">{result}</p>
         </TextTransition>
       </div>
     </div>

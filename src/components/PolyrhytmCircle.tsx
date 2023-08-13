@@ -1,6 +1,7 @@
 import useSound from "use-sound";
-import { useCircleAnimation, useRotation } from "../lib/utils";
 import vibroMap from "../assets/assets";
+import { useRotation } from "../hooks/useRotation";
+import { useCircleAnimation } from "../hooks/useCircleAnimation";
 
 type Props = {
   elapsedTime: number;
@@ -8,7 +9,7 @@ type Props = {
   currentNumber: number;
   isPlaying: boolean;
   volume: number;
-}
+};
 
 const PolyrhytmCircle = ({
   elapsedTime,

@@ -24,10 +24,13 @@ const QRCode = () => {
         onLoad={() => setIsLoading(false)}
       ></img>
       {isLoading && <Skeleton className="mb-6 h-72 w-72 rounded-xl" />}
-      <p className="mb-4 px-5 text-[22px] font-bold tracking-tight text-[#1f3251] dark:text-[#7b879d]">
+      <p className="mb-4 px-5 text-[22px] font-bold tracking-tight ">
+        {" "}
+        {/* text-[#1f3251] dark:text-[#7b879d] */}
         Improve your front-end skills by building projects
       </p>
-      <p className="px-4 text-[15px] text-[#7b879d] dark:text-[#7b879d]">
+      <p className="px-4 text-[15px] text-muted-foreground">
+        {/* text-[#7b879d] dark:text-[#7b879d]">{/* text-[#1f3251] dark:text-[#7b879d] */}
         Scan the QR code to visit Frontend Mentor and take your coding skills to
         the next level
       </p>

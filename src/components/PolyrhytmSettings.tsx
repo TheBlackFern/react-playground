@@ -20,7 +20,9 @@ const PolyrhytmSettings = ({
 }: Props) => {
   return (
     <div className="z-10 grid w-52 grid-flow-row grid-cols-5 place-items-center gap-y-1">
-      <p className="col-span-1 w-18 place-self-end text-right">Sync time</p>
+      <p className="col-span-1 w-18 place-self-end text-right font-thin">
+        Sync time
+      </p>
       <Slider
         defaultValue={[600]}
         onValueChange={handleChangeSpeed}
@@ -29,8 +31,8 @@ const PolyrhytmSettings = ({
         step={50}
         className="col-span-2 col-start-3 h-2 w-24 cursor-pointer appearance-none rounded-lg bg-destructive text-destructive dark:bg-destructive"
       ></Slider>
-      <p className="ml-2 w-16 place-self-start">{`${syncTime} sec`}</p>
-      <p className="place-self-end text-right">Volume</p>
+      <p className="ml-3 w-16 place-self-start ">{`${syncTime} sec`}</p>
+      <p className="place-self-end text-right font-thin">Volume</p>
       <VolumeX className="col-span-1" size={16} />
       <Slider
         defaultValue={[0.5]}

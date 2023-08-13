@@ -67,10 +67,60 @@ export default {
           from: { height: "var(--radix-accordion-content-height)" },
           to: { height: 0 },
         },
+        tilt: {
+          "0%, 50%, 100%": {
+            transform: "rotate(0deg)",
+          },
+          "25%": {
+            transform: "rotate(2deg)",
+          },
+          "75%": {
+            transform: "rotate(-2deg)",
+          },
+        },
+        color: {
+          "12.5%": {
+            "background-image": "linear-gradient(90deg, #dc2626, #a3e635)", //red-600 lime-400
+            transform: "scaleX(var(--max-scale)) scaleY(var(--max-scale))",
+          },
+          "0%, 100%": {
+            "background-image": "linear-gradient(90deg, #dc2626, #a3e635)",
+            transform: "scaleX(var(--min-scale)) scaleY(var(--min-scale))",
+          },
+          "25%, 50%, 75%": {
+            transform: "scaleX(var(--min-scale)) scaleY(var(--min-scale))",
+          },
+          "37.5%": {
+            "background-image": "linear-gradient(90deg, #0ea5e9, #ec4899)", //cyan-500 pink-500
+            transform: "scaleX(var(--max-scale)) scaleY(var(--max-scale))",
+          },
+          "67.5%": {
+            "background-image": "linear-gradient(90deg, #d946ef, #14b8a6)", //fushia-500 teal-500
+            transform: "scaleX(var(--max-scale)) scaleY(var(--max-scale))",
+          },
+          "87.5%": {
+            "background-image": "linear-gradient(90deg, #0ea5e9, #f97316)", //sky-500 orange-500
+            transform: "scaleX(var(--max-scale)) scaleY(var(--max-scale))",
+          },
+        },
+        transparent: {
+          "12.5%": {
+            color: "hsl(var(--foreground))",
+          },
+          "17.5%, 32.5%": {
+            color: "transparent",
+          },
+          "37.5%": {
+            color: "hsl(var(--foreground))",
+          },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
+        tilt: "tilt 10s linear infinite",
+        transparent: "transparent 10s linear infinite",
+        color: "color 10s linear infinite",
       },
       spacing: {
         18: "72px",
@@ -82,5 +132,5 @@ export default {
       },
     },
   },
-  plugins: [require("tailwindcss-animate")],
+  plugins: [require("tailwindcss-animated")],
 };

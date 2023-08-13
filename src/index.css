@@ -4,6 +4,8 @@
 
 @layer base {
   :root {
+    --min-scale: 0.7;
+    --max-scale: 0.9;
     --background: 0 0% 100%;
     --foreground: 224 71.4% 4.1%;
     --card: 0 0% 100%;
