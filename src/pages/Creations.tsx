@@ -59,9 +59,10 @@ const Creations = ({ shownComponents, setShownComponents }: Props) => {
             simply click the button below.
           </p>
           <div className="group relative mt-16">
-            <div className="absolute inset-0 -m-1 animate-color rounded-lg opacity-75 blur-md transition duration-1000 animate-delay-[250ms] group-hover:animate-none group-hover:opacity-0" />
+            <div className="gradient absolute inset-0 -m-1 animate-move rounded-lg opacity-75 blur-md transition duration-1000 animate-delay-[400ms] group-hover:animate-none group-hover:opacity-0" />
             <div className="absolute inset-0 -m-[1px] rounded-lg bg-gradient-to-r from-pink-500 to-purple-500 transition duration-1000 group-hover:animate-none" />
             <Button
+              variant={"outline"}
               onClick={() =>
                 setShownComponents({
                   Captcha: true,

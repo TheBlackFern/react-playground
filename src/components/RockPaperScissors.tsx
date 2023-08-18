@@ -53,11 +53,17 @@ function RockPaperScissors() {
           translateValue="0%"
           direction="up"
         >
-          <div className="flex flex-row">
-            <p className="w-8">{userGesture ? `${userGesture}` : ""}</p>
-            <p className="w-8 font-thin">{userGesture ? "VS" : "Pick!"}</p>
-            <p className="w-8">{userGesture ? `${enemyGesture}` : ""}</p>
-          </div>
+          <p className="flex flex-row">
+            <span className="w-8 rotate-90">
+              {userGesture ? `${userGesture}` : ""}
+            </span>
+            <span className="w-8 font-thin">
+              {userGesture ? "VS" : "Pick!"}
+            </span>
+            <span className="w-8 -rotate-90">
+              {userGesture ? `${enemyGesture}` : ""}
+            </span>
+          </p>
           <p className="mt-3 font-thin">{result}</p>
         </TextTransition>
       </div>

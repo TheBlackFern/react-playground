@@ -78,29 +78,15 @@ export default {
             transform: "rotate(-2deg)",
           },
         },
-        color: {
-          "12.5%": {
-            "background-image": "linear-gradient(90deg, #dc2626, #a3e635)", //red-600 lime-400
-            transform: "scaleX(var(--max-scale)) scaleY(var(--max-scale))",
+        move: {
+          "0%": {
+            "background-position": "0% 50%",
           },
-          "0%, 100%": {
-            "background-image": "linear-gradient(90deg, #dc2626, #a3e635)",
-            transform: "scaleX(var(--min-scale)) scaleY(var(--min-scale))",
+          "50%": {
+            "background-position": "100% 50%",
           },
-          "25%, 50%, 75%": {
-            transform: "scaleX(var(--min-scale)) scaleY(var(--min-scale))",
-          },
-          "37.5%": {
-            "background-image": "linear-gradient(90deg, #0ea5e9, #ec4899)", //cyan-500 pink-500
-            transform: "scaleX(var(--max-scale)) scaleY(var(--max-scale))",
-          },
-          "67.5%": {
-            "background-image": "linear-gradient(90deg, #d946ef, #14b8a6)", //fushia-500 teal-500
-            transform: "scaleX(var(--max-scale)) scaleY(var(--max-scale))",
-          },
-          "87.5%": {
-            "background-image": "linear-gradient(90deg, #0ea5e9, #f97316)", //sky-500 orange-500
-            transform: "scaleX(var(--max-scale)) scaleY(var(--max-scale))",
+          "100%": {
+            "background-position": "0% 50%",
           },
         },
         transparent: {
@@ -120,7 +106,7 @@ export default {
         "accordion-up": "accordion-up 0.2s ease-out",
         tilt: "tilt 10s linear infinite",
         transparent: "transparent 10s linear infinite",
-        color: "color 10s linear infinite",
+        move: "move 20s linear infinite",
       },
       spacing: {
         18: "72px",

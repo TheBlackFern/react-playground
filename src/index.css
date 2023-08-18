@@ -59,4 +59,18 @@
     @apply bg-background text-foreground;
     font-feature-settings: "rlig" 1, "calt" 1;
   }
+  .gradient {
+    background: linear-gradient(
+      270deg,
+      #dc2626,
+      #a3e635,
+      #06b6d4,
+      #ec4899,
+      #d946ef,
+      #14b8a6,
+      #0ea5e9,
+      #f97316
+    );
+    background-size: 1600% 1600%;
+  }
 }

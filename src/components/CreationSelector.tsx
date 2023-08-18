@@ -9,6 +9,7 @@ import {
 } from "./ui";
 import { ComponentsType } from "../App";
 import _ from "lodash";
+import * as React from "react";
 
 type Props = {
   className?: string;
@@ -21,6 +22,12 @@ const CreationSelector = ({
   shownComponents,
   setShownComponents,
 }: Props) => {
+  const [selectAll, setSelectAll] = React.useState(false);
+
+  function hadndleSelectAll(selected: boolean) {
+    setShownComponents((prev) => _.mapValues(prev, () => selected));
+    setSelectAll((prev) => !prev);
+  }
   // generalised function for all components which is used to create
   // partial functions for all components
   function handleChecked(key: boolean, componentName: string) {
@@ -40,6 +47,17 @@ const CreationSelector = ({
       <DropdownMenuContent className="w-56 text-center">
         <DropdownMenuLabel>Render Components</DropdownMenuLabel>
         <DropdownMenuSeparator />
+        <DropdownMenuCheckboxItem
+          checked={selectAll}
+          onCheckedChange={hadndleSelectAll}
+          onSelect={(e) => {
+            e.preventDefault();
+          }}
+        >
+          Check All
+        </DropdownMenuCheckboxItem>
+        <DropdownMenuSeparator />
+
         {Object.keys(shownComponents).map((key) => (
           <DropdownMenuCheckboxItem
             checked={shownComponents[key]}
