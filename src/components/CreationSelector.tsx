@@ -24,6 +24,14 @@ const CreationSelector = ({
 }: Props) => {
   const [selectAll, setSelectAll] = React.useState(false);
 
+  React.useEffect(() => {
+    if (Object.values(shownComponents).every(Boolean)) {
+      setSelectAll(true);
+    } else {
+      setSelectAll(false);
+    }
+  }, [shownComponents]);
+
   function hadndleSelectAll(selected: boolean) {
     setShownComponents((prev) => _.mapValues(prev, () => selected));
     setSelectAll((prev) => !prev);

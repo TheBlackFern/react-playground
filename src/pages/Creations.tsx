@@ -13,6 +13,7 @@ import {
 } from "../components";
 import { ComponentsType } from "../App";
 import { Button } from "../components/ui";
+import _ from "lodash";
 
 // type def is needed for TS to understand that names are strings
 // otherwise is says that these are properties and doesn't understand
@@ -58,29 +59,40 @@ const Creations = ({ shownComponents, setShownComponents }: Props) => {
             Feel free to select any number of creations from the menu above or
             simply click the button below.
           </p>
-          <div className="group relative mt-16">
-            <div className="gradient absolute inset-0 -m-1 animate-move rounded-lg opacity-75 blur-md transition duration-1000 animate-delay-[400ms] group-hover:animate-none group-hover:opacity-0" />
-            <div className="absolute inset-0 -m-[1px] rounded-lg bg-gradient-to-r from-pink-500 to-purple-500 transition duration-1000 group-hover:animate-none" />
+          <div className="mt-16 flex flex-row gap-16">
             <Button
               variant={"outline"}
               onClick={() =>
-                setShownComponents({
-                  Captcha: true,
-                  "Guess Color": true,
-                  Wordle: true,
-                  Polyrhytms: true,
-                  "Naughts and Crosses": true,
-                  "Rock-Paper-Scissors": true,
-                  Rating: true,
-                  "Result Summary": true,
-                  "QR Code": true,
-                  Chess: true,
-                })
+                setShownComponents((prev) => _.mapValues(prev, () => true))
               }
-              className="relative h-12 w-48 border-none bg-background from-pink-500 to-purple-500 py-4 font-outfit text-lg  duration-300  group-hover:bg-transparent group-hover:bg-gradient-to-r group-hover:text-black"
+              className=" h-12 w-52  py-4 font-outfit text-lg  "
             >
               Show All
             </Button>
+            <div className="group relative">
+              <div className="gradient absolute inset-0 -m-1.5 animate-gradient rounded-lg opacity-75 blur-md transition duration-1000 animate-delay-[00ms] group-hover:opacity-0" />
+              <div className="gradient absolute inset-0  -m-[1px] animate-gradient rounded-lg transition duration-1000 animate-delay-[00ms]" />
+              <Button
+                variant={"outline"}
+                onClick={() =>
+                  setShownComponents({
+                    Captcha: false,
+                    "Guess Color": true,
+                    Wordle: true,
+                    Polyrhytms: true,
+                    "Naughts and Crosses": false,
+                    "Rock-Paper-Scissors": false,
+                    Rating: false,
+                    "Result Summary": false,
+                    "QR Code": false,
+                    Chess: false,
+                  })
+                }
+                className="relative h-12 w-52 border-none bg-background py-4 font-outfit text-lg  font-semibold  duration-300 group-hover:bg-transparent group-hover:text-black"
+              >
+                Show Highlights
+              </Button>
+            </div>
           </div>
         </div>
       )}

@@ -78,7 +78,7 @@ export default {
             transform: "rotate(-2deg)",
           },
         },
-        move: {
+        gradient: {
           "0%": {
             "background-position": "0% 50%",
           },
@@ -90,13 +90,13 @@ export default {
           },
         },
         transparent: {
-          "12.5%": {
+          "1%": {
             color: "hsl(var(--foreground))",
           },
-          "17.5%, 32.5%": {
+          "6%, 21%": {
             color: "transparent",
           },
-          "37.5%": {
+          "25%": {
             color: "hsl(var(--foreground))",
           },
         },
@@ -106,7 +106,7 @@ export default {
         "accordion-up": "accordion-up 0.2s ease-out",
         tilt: "tilt 10s linear infinite",
         transparent: "transparent 10s linear infinite",
-        move: "move 20s linear infinite",
+        gradient: "gradient 20s linear infinite",
       },
       spacing: {
         18: "72px",
