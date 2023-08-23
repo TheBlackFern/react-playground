@@ -79,21 +79,77 @@ export default {
           },
         },
         gradient: {
-          "0%": {
+          "0%, 22%, 100%": {
             "background-position": "0% 50%",
+            opacity: 0.75,
           },
-          "50%": {
+          "25%, 50%, 75%": {
+            opacity: 0.1,
+          },
+          "98%": {
+            opacity: 0.1,
+          },
+          "28%, 47%": {
+            "background-position": "33% 50%",
+            opacity: 0.75,
+          },
+          "53%, 72%": {
+            "background-position": "66% 50%",
+            opacity: 0.75,
+          },
+          "78%, 95%": {
             "background-position": "100% 50%",
+            opacity: 0.75,
           },
-          "100%": {
-            "background-position": "0% 50%",
+        },
+        "gradient-button": {
+          "0%, 25%, 50%, 75%, 100%": {
+            transform: "scaleX(0.9) scaleY(0.9)",
+            background: "#a3e635",
+          },
+          "2.5%, 23.5%": {
+            transform: "scaleX(1) scaleY(1)",
+            background: "linear-gradient(270deg, #dc2626, #a3e635)",
+          },
+          "27.5%, 48.5%": {
+            transform: "scaleX(1) scaleY(1)",
+            background: "linear-gradient(270deg, #22d3ee, #db2777)",
+          },
+          "52.5%, 73.5%": {
+            transform: "scaleX(1) scaleY(1)",
+            background: "linear-gradient(270deg, #c084fc, #0d9488)",
+          },
+          "77.5%, 98.5%": {
+            transform: "scaleX(1) scaleY(1)",
+            background: "linear-gradient(270deg, #0284c7, #fb923c)",
+          },
+        },
+        "gradient-border": {
+          "0%, 25%, 50%, 75%, 100%": {
+            opacity: 0.3,
+          },
+          "2.5%, 21%": {
+            opacity: 1,
+            background: "linear-gradient(270deg, #dc2626, #a3e635)",
+          },
+          "27.5%, 46%": {
+            opacity: 1,
+            background: "linear-gradient(270deg, #22d3ee, #db2777)",
+          },
+          "52.5%, 71%": {
+            opacity: 1,
+            background: "linear-gradient(270deg, #c084fc, #0d9488)",
+          },
+          "77.5%, 96%": {
+            opacity: 1,
+            background: "linear-gradient(270deg, #0284c7, #fb923c)",
           },
         },
         transparent: {
-          "1%": {
+          "0%": {
             color: "hsl(var(--foreground))",
           },
-          "6%, 21%": {
+          "2.5%, 21%": {
             color: "transparent",
           },
           "25%": {
@@ -106,7 +162,8 @@ export default {
         "accordion-up": "accordion-up 0.2s ease-out",
         tilt: "tilt 10s linear infinite",
         transparent: "transparent 10s linear infinite",
-        gradient: "gradient 20s linear infinite",
+        "gradient-button": "gradient-button 10s ease-in-out infinite",
+        "gradient-border": "gradient-border 10s ease-in-out infinite",
       },
       spacing: {
         18: "72px",

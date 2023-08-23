@@ -52,8 +52,9 @@ const WordleKeyBoard = ({
           {row.map((key) => (
             <Button
               variant={"outline"}
-              className={`h-11 px-1.5 py-1 sm:px-2.5 ${
-                (letterStatus[key] === "wrong" && "bg-wrong text-white") ||
+              className={`h-11 bg-wrong px-1.5 py-1 text-white sm:px-2.5 ${
+                (letterStatus[key] === "wrong" &&
+                  "bg-background text-secondary-foreground") ||
                 (letterStatus[key] === "almost" && "bg-almost text-white") ||
                 (letterStatus[key] === "correct" && "bg-correct text-white")
               } ${
@@ -64,7 +65,7 @@ const WordleKeyBoard = ({
               onClick={() => handleClick(key)}
               key={key}
             >
-              {key === "Backspace" ? <ArrowBigLeftDashIcon size={32} /> : key}
+              {key === "Backspace" ? <ArrowBigLeftDashIcon size={28} /> : key}
             </Button>
           ))}
         </div>

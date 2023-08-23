@@ -11,6 +11,7 @@ import {
   Creation,
   GuessColor,
 } from "../components";
+import { Gem } from "lucide-react";
 import { ComponentsType } from "../App";
 import { Button } from "../components/ui";
 import _ from "lodash";
@@ -42,16 +43,16 @@ const Creations = ({ shownComponents, setShownComponents }: Props) => {
       {Object.values(shownComponents).every((v) => v === false) && (
         <div className="-mt-3 flex flex-col items-center justify-center">
           <p className="flex flex-col font-sans text-[5rem] font-extrabold leading-none tracking-tighter md:flex-row md:gap-3">
-            <span className="animate-transparent bg-gradient-to-r from-red-600 to-lime-400 bg-clip-text">
+            <span className="animate-transparent bg-gradient-to-r from-lime-400 to-red-600 bg-clip-text">
               Look.
             </span>
-            <span className="animate-transparent bg-gradient-to-r from-cyan-400 to-pink-600 bg-clip-text animate-delay-[2500ms]">
+            <span className="animate-transparent bg-gradient-to-r from-pink-600 to-cyan-400 bg-clip-text animate-delay-[2500ms]">
               At.
             </span>
-            <span className="animate-transparent bg-gradient-to-r from-purple-400 to-teal-600 bg-clip-text animate-delay-[5000ms]">
+            <span className="animate-transparent bg-gradient-to-r from-teal-600 to-purple-400 bg-clip-text animate-delay-[5000ms]">
               All.
             </span>
-            <span className="animate-transparent bg-gradient-to-r from-sky-600 to-orange-400 bg-clip-text animate-delay-[7500ms]">
+            <span className="animate-transparent bg-gradient-to-r from-orange-400 to-sky-600 bg-clip-text animate-delay-[7500ms]">
               That.
             </span>
           </p>
@@ -65,13 +66,14 @@ const Creations = ({ shownComponents, setShownComponents }: Props) => {
               onClick={() =>
                 setShownComponents((prev) => _.mapValues(prev, () => true))
               }
-              className=" h-12 w-52  py-4 font-outfit text-lg  "
+              className=" h-12 w-52 gap-1.5 py-4 font-outfit text-lg  "
             >
-              Show All
+              <Gem size={20} />
+              <span>Show All</span>
             </Button>
             <div className="group relative">
-              <div className="gradient absolute inset-0 -m-1.5 animate-gradient rounded-lg opacity-75 blur-md transition duration-1000 animate-delay-[00ms] group-hover:opacity-0" />
-              <div className="gradient absolute inset-0  -m-[1px] animate-gradient rounded-lg transition duration-1000 animate-delay-[00ms]" />
+              <div className="gradient absolute inset-0 -m-1 animate-gradient-border rounded-lg blur-md transition duration-100 group-hover:scale-0" />
+              <div className="gradient absolute inset-0 -m-[1px] animate-gradient-border rounded-lg transition duration-1000" />
               <Button
                 variant={"outline"}
                 onClick={() =>
@@ -88,9 +90,9 @@ const Creations = ({ shownComponents, setShownComponents }: Props) => {
                     Chess: false,
                   })
                 }
-                className="relative h-12 w-52 border-none bg-background py-4 font-outfit text-lg  font-semibold  duration-300 group-hover:bg-transparent group-hover:text-black"
+                className="relative h-12 w-52 border-none bg-background py-4 font-outfit  text-lg font-semibold duration-300 group-hover:bg-transparent group-hover:text-black"
               >
-                Show Highlights
+                Highlights
               </Button>
             </div>
           </div>
