@@ -59,60 +59,14 @@ function NaughtsAndCrossesBoard() {
     <div className="relative flex w-40 flex-row gap-3 pl-2">
       <ResetButton reset={resetBoard} />
       <div className={`relative grid grid-cols-3 transition-all duration-300`}>
-        <NaughtsAndCrossesTile
-          value={values[0]}
-          onTileClick={() => handleClick(0)}
-          isWinning={winningRef.current[0]}
-          gameOver={isGameOver}
-        />
-        <NaughtsAndCrossesTile
-          value={values[1]}
-          onTileClick={() => handleClick(1)}
-          isWinning={winningRef.current[1]}
-          gameOver={isGameOver}
-        />
-        <NaughtsAndCrossesTile
-          value={values[2]}
-          onTileClick={() => handleClick(2)}
-          isWinning={winningRef.current[2]}
-          gameOver={isGameOver}
-        />
-        <NaughtsAndCrossesTile
-          value={values[3]}
-          onTileClick={() => handleClick(3)}
-          isWinning={winningRef.current[3]}
-          gameOver={isGameOver}
-        />
-        <NaughtsAndCrossesTile
-          value={values[4]}
-          onTileClick={() => handleClick(4)}
-          isWinning={winningRef.current[4]}
-          gameOver={isGameOver}
-        />
-        <NaughtsAndCrossesTile
-          value={values[5]}
-          onTileClick={() => handleClick(5)}
-          isWinning={winningRef.current[5]}
-          gameOver={isGameOver}
-        />
-        <NaughtsAndCrossesTile
-          value={values[6]}
-          onTileClick={() => handleClick(6)}
-          isWinning={winningRef.current[6]}
-          gameOver={isGameOver}
-        />
-        <NaughtsAndCrossesTile
-          value={values[7]}
-          onTileClick={() => handleClick(7)}
-          isWinning={winningRef.current[7]}
-          gameOver={isGameOver}
-        />
-        <NaughtsAndCrossesTile
-          value={values[8]}
-          onTileClick={() => handleClick(8)}
-          isWinning={winningRef.current[8]}
-          gameOver={isGameOver}
-        />
+        {values.map((val, i) => (
+          <NaughtsAndCrossesTile
+            value={val}
+            onTileClick={() => handleClick(i)}
+            isWinning={winningRef.current[i]}
+            gameOver={isGameOver}
+          />
+        ))}
       </div>
     </div>
   );

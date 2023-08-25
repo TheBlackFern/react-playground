@@ -1,17 +1,15 @@
 import * as React from "react";
-import { QueryClient, QueryClientProvider } from "react-query";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import NavBar from "./pages/NavBar";
 import Creations from "./pages/Creations";
 import { ThemeProvider } from "./components/ui/ThemeProvider";
 
 const queryClient = new QueryClient();
 
-export type ComponentsType = {
-  [key: string]: boolean;
-};
+export type TComponents = Record<string, boolean>;
 
 function App() {
-  const [shownComponents, setShownComponents] = React.useState<ComponentsType>({
+  const [shownComponents, setShownComponents] = React.useState<TComponents>({
     Captcha: false,
     "Guess Color": false,
     Wordle: false,

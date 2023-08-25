@@ -2,12 +2,9 @@ import * as React from "react";
 import ResultSummaryResult from "./ResultSummaryResult";
 import ResultSummarySummary from "./ResultSummarySummary";
 
-type Score = {
-  reaction: number;
-  memory: number;
-  verbal: number;
-  visual: number;
-};
+export type TResultCategory = "reaction" | "memory" | "verbal" | "visual";
+
+type Score = Record<TResultCategory, number>;
 
 export const ResultContext = React.createContext<Score>({
   reaction: 80,
@@ -18,19 +15,15 @@ export const ResultContext = React.createContext<Score>({
 
 const ResultSummary = () => {
   // create a random result
-  const randomReaction = Math.floor(Math.random() * 100);
-  const randomMemory = Math.floor(Math.random() * 100);
-  const randomVerbal = Math.floor(Math.random() * 100);
-  const randomVisual = Math.floor(Math.random() * 100);
-  const val = {
-    reaction: randomReaction,
-    memory: randomMemory,
-    verbal: randomVerbal,
-    visual: randomVisual,
+  const randResult = {
+    reaction: Math.floor(Math.random() * 100),
+    memory: Math.floor(Math.random() * 100),
+    verbal: Math.floor(Math.random() * 100),
+    visual: Math.floor(Math.random() * 100),
   };
 
   return (
-    <ResultContext.Provider value={val}>
+    <ResultContext.Provider value={randResult}>
       <div className="mx-5 mb-10 mt-17 flex w-auto scale-125 flex-col justify-center sm:mt-10 sm:flex-row sm:pl-5">
         <ResultSummaryResult />
         <ResultSummarySummary />

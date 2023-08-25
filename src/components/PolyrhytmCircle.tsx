@@ -3,7 +3,7 @@ import vibroMap from "../assets/assets";
 import { useRotation } from "../hooks/useRotation";
 import { useCircleAnimation } from "../hooks/useCircleAnimation";
 
-type Props = {
+type PolyrhytmCircleProps = {
   elapsedTime: number;
   syncTime: number;
   currentNumber: number;
@@ -17,7 +17,7 @@ const PolyrhytmCircle = ({
   currentNumber,
   isPlaying,
   volume,
-}: Props) => {
+}: PolyrhytmCircleProps) => {
   const numberOfLaps = 50; // just a nice number
 
   // baseVelocity is when you complete 1 circle in syncTime

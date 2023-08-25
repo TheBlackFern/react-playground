@@ -1,9 +1,9 @@
-interface Props {
+type RatingSelectRadioProps = {
   points: number;
   rate: (rating: number) => void;
-}
+};
 
-const RatingSelectRadio = ({ points, rate }: Props) => {
+const RatingSelectRadio = ({ points, rate }: RatingSelectRadioProps) => {
   return (
     <label className="relative h-9 w-9 transition-all duration-300">
       <input

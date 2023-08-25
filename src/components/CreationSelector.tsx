@@ -7,21 +7,21 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "./ui";
-import { ComponentsType } from "../App";
+import { TComponents } from "../App";
 import _ from "lodash";
 import * as React from "react";
 
-type Props = {
+type CreationSelectorProps = {
   className?: string;
-  shownComponents: ComponentsType;
-  setShownComponents: React.Dispatch<React.SetStateAction<ComponentsType>>;
+  shownComponents: TComponents;
+  setShownComponents: React.Dispatch<React.SetStateAction<TComponents>>;
 };
 
 const CreationSelector = ({
   className,
   shownComponents,
   setShownComponents,
-}: Props) => {
+}: CreationSelectorProps) => {
   const [selectAll, setSelectAll] = React.useState(false);
 
   React.useEffect(() => {

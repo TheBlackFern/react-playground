@@ -12,7 +12,7 @@ import {
   GuessColor,
 } from "../components";
 import { Gem } from "lucide-react";
-import { ComponentsType } from "../App";
+import { TComponents } from "../App";
 import { Button } from "../components/ui";
 import _ from "lodash";
 
@@ -32,12 +32,12 @@ export const Components: { [key: string]: JSX.Element } = {
   Rating: <Rating />,
 };
 
-type Props = {
-  shownComponents: ComponentsType;
-  setShownComponents: React.Dispatch<React.SetStateAction<ComponentsType>>;
+type CreationsProps = {
+  shownComponents: TComponents;
+  setShownComponents: React.Dispatch<React.SetStateAction<TComponents>>;
 };
 
-const Creations = ({ shownComponents, setShownComponents }: Props) => {
+const Creations = ({ shownComponents, setShownComponents }: CreationsProps) => {
   return (
     <main className="relative mb-10 flex h-[calc(100vh-7rem)] flex-row flex-wrap justify-center bg-background px-10 pt-5 transition-all duration-300 dark:bg-background">
       {Object.values(shownComponents).every((v) => v === false) && (

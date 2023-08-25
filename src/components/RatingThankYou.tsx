@@ -2,11 +2,11 @@ import * as React from "react";
 import ThankYou from "../assets/images/illustration-thank-you.svg";
 import { Skeleton } from "./ui";
 
-type Props = {
+type RatingThankYouProps = {
   rating: number;
 };
 
-const RatingThankYou = ({ rating }: Props) => {
+const RatingThankYou = ({ rating }: RatingThankYouProps) => {
   const imageElement = new Image();
   imageElement.src = ThankYou;
   const [isLoading, setIsLoading] = React.useState(true);

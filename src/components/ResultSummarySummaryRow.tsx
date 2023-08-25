@@ -4,6 +4,7 @@ import Verbal from "../assets/images/icon-verbal.svg";
 import Visual from "../assets/images/icon-visual.svg";
 import { useState } from "react";
 import { Skeleton } from "./ui/Skeleton";
+import { TResultCategory } from "./ResultSummary";
 
 const svgMap = new Map<string, string>();
 svgMap.set("reaction", Reaction);
@@ -11,8 +12,8 @@ svgMap.set("memory", Memory);
 svgMap.set("verbal", Verbal);
 svgMap.set("visual", Visual);
 
-type Props = {
-  title: "reaction" | "memory" | "verbal" | "visual";
+type ResultSummarySummaryRowProps = {
+  title: TResultCategory;
   score: number;
 };
 
@@ -26,7 +27,10 @@ type Props = {
 // Pale blue: #ebf1ff
 // Light lavender: #c8c7ff
 // Dark gray blue: #303b5a
-const ResultSummarySummaryRow = ({ title, score }: Props) => {
+const ResultSummarySummaryRow = ({
+  title,
+  score,
+}: ResultSummarySummaryRowProps) => {
   const [isLoading, setIsLoading] = useState(true);
 
   return (

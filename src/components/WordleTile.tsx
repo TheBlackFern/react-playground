@@ -1,12 +1,12 @@
-import { Colour } from "./Wordle";
+import { TColour } from "./Wordle";
 
-type Props = {
+type WordleTileProps = {
   letter: string;
   done: boolean;
-  colour: Colour;
+  colour: TColour;
 };
 
-const WordleTile = ({ letter, done, colour }: Props) => {
+const WordleTile = ({ letter, done, colour }: WordleTileProps) => {
   return (
     <div
       className={`flex h-12 w-12 items-center justify-center rounded-sm border-2 font-mono text-xl font-bold shadow-sm transition-all duration-300 dark:border dark:shadow-none sm:h-12 sm:w-12 sm:text-3xl ${

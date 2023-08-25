@@ -1,13 +1,13 @@
-import { Colour } from "./Wordle";
+import { TColour } from "./Wordle";
 import WordleTile from "./WordleTile";
 
-type Props = {
+type WordleRowProps = {
   word: string[];
   done: boolean;
-  colours: Colour[];
+  colours: TColour[];
 };
 
-const WordleRow = ({ word, done, colours }: Props) => {
+const WordleRow = ({ word, done, colours }: WordleRowProps) => {
   return (
     <div className="flex gap-1">
       <WordleTile letter={word[0]} colour={colours[0]} done={done} />

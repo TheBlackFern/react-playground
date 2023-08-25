@@ -13,10 +13,10 @@ function RockPaperScissors() {
     const randomGesture = gestures[randomIndex];
     setEnemyGesture(randomGesture);
     setUserGesture(sign);
-    getWinner(sign, randomGesture);
+    checkWinner(sign, randomGesture);
   }
 
-  function getWinner(userSign: string, enemySign: string): void {
+  function checkWinner(userSign: string, enemySign: string) {
     let newResult: string;
     if (userSign === enemySign) {
       newResult = "Draw!";

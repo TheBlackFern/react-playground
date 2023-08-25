@@ -1,11 +1,11 @@
 import { Swords } from "lucide-react";
 import { CreationSelector } from "../components";
 import { ThemeChanger } from "../components/ui";
-import { ComponentsType } from "../App";
+import { TComponents } from "../App";
 
 type Props = {
-  shownComponents: ComponentsType;
-  setShownComponents: React.Dispatch<React.SetStateAction<ComponentsType>>;
+  shownComponents: TComponents;
+  setShownComponents: React.Dispatch<React.SetStateAction<TComponents>>;
 };
 
 const NavBar = ({ shownComponents, setShownComponents }: Props) => {

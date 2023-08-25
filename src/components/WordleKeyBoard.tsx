@@ -1,11 +1,9 @@
 import { ArrowBigLeftDashIcon } from "lucide-react";
-import { Colour } from "./Wordle";
+import { TLetterStatus } from "./Wordle";
 import { Button } from "./ui";
 
-type Props = {
-  letterStatus: {
-    [key: string]: Colour;
-  };
+type WordleKeyBoardProps = {
+  letterStatus: TLetterStatus;
   currentGuessNumber: number;
   setCurrentGuessNumber: React.Dispatch<React.SetStateAction<number>>;
   setCurrentGuess: React.Dispatch<React.SetStateAction<string[]>>;
@@ -16,7 +14,7 @@ const WordleKeyBoard = ({
   currentGuessNumber,
   setCurrentGuessNumber,
   setCurrentGuess,
-}: Props) => {
+}: WordleKeyBoardProps) => {
   const row1 = "qwertyuiop".toUpperCase().split("");
   const row2 = "asdfghjkl".toUpperCase().split("");
   const row3 = ["Enter"]

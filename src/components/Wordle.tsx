@@ -1,33 +1,31 @@
 import * as React from "react";
-import { useQuery } from "react-query";
+import { useQuery } from "@tanstack/react-query";
+import { useKeyDown } from "../hooks/useKeyDown";
 
 import { words } from "../assets/data/words";
 import WordleRow from "./WordleRow";
 import WordleKeyBoard from "./WordleKeyBoard";
-import ResetButton from "./ui/ResetButton";
-import { useKeyDown } from "../hooks/useKeyDown";
+import { ResetButton } from "./ui";
 
-export type Colour = "wrong" | "almost" | "correct";
-export type LetterStatus = {
-  [key: string]: Colour;
-};
+export type TColour = "wrong" | "almost" | "correct";
+export type TLetterStatus = Record<string, TColour>;
 
 function checkGuess(
   guess: string[],
   answer: string[],
-  oldCheckedLetters: LetterStatus
-): [Colour[], LetterStatus] {
-  const newRowColours: Colour[] = Array(answer.length).fill("wrong");
-  const newLetterStatus: LetterStatus = oldCheckedLetters;
+  oldCheckedLetters: TLetterStatus
+): [TColour[], TLetterStatus] {
+  const newRowColours: TColour[] = Array(answer.length).fill("wrong");
+  const newLetterStatus: TLetterStatus = oldCheckedLetters;
   const notSeen = [...answer];
 
-  // we need two cycles, as we have to account for a guess to have
-  // two letter, incorrect one before correct one (g: PASTA, a: PIZZA)
+  // we need two cycles, as we have to account for guesses that have
+  // two letters, incorrect one before correct one (g: PASTA, a: PIZZA)
   // as otherwise we will highlight the first A as almost correct and
-  // the second A as correct, cause being correct is checked instead of
-  // being in the in a word in this case, but even if we checked for not
+  // the second A as correct, because being correct is checked instead of
+  // being in a word in this case, but even if we checked for not
   // being seen first, the first A would still be almost correct, while
-  // the second would now  be rendered as wrong
+  // the second would now be rendered as wrong
   // So, we have to know all correct ones ahead of time
   guess.forEach((char, idx) => {
     if (char !== answer[idx]) return;
@@ -83,8 +81,8 @@ const Wordle = () => {
     Array(NUM_OF_GUESSES).fill(Array(ANSWER.length).fill(""))
   );
 
-  const [letterStatus, setLetterStatus] = React.useState<LetterStatus>({});
-  const [rowColours, setRowColours] = React.useState<Colour[][]>(
+  const [letterStatus, setLetterStatus] = React.useState<TLetterStatus>({});
+  const [rowColours, setRowColours] = React.useState<TColour[][]>(
     Array(NUM_OF_GUESSES).fill(Array(ANSWER.length).fill("wrong"))
   );
 
