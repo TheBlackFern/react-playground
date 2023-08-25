@@ -16,7 +16,7 @@ export function useRotation(
 
   React.useEffect(() => {
     setAngle((prev) => prev + (renderTime * angularVelocity) / 1000);
-  }, [elapsedTime]);
+  }, [elapsedTime, angularVelocity]);
 
   return [angle];
 }

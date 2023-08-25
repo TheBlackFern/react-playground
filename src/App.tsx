@@ -13,7 +13,7 @@ function App() {
     Captcha: false,
     "Guess Color": false,
     Wordle: false,
-    Polyrhytms: false,
+    Polyrhythms: false,
     "Naughts and Crosses": false,
     "Rock-Paper-Scissors": false,
     Rating: false,

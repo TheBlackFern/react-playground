@@ -20,3 +20,11 @@ export {
   DropdownMenuSubTrigger,
   DropdownMenuRadioGroup,
 } from "./Dropdown";
+export {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "./Card";

@@ -67,7 +67,7 @@ const Wordle = () => {
   });
 
   const NUM_OF_GUESSES = 6;
-  const ANSWER = data!.toUpperCase().split("");
+  const ANSWER = data?.toUpperCase().split("") ?? "OCEAN".split("");
   // const ANSWER = "XXXXA".split("");
   const [key, code, changed] = useKeyDown();
   const [isGameOver, setIsGameOver] = React.useState(false);
@@ -86,10 +86,10 @@ const Wordle = () => {
     Array(NUM_OF_GUESSES).fill(Array(ANSWER.length).fill("wrong"))
   );
 
-  const keyRegex = /Key[A-Z]/;
-
   React.useEffect(() => {
+    const keyRegex = /Key[A-Z]/;
     // all letter have codes of KeyX where X is the letter
+
     if (keyRegex.test(code)) {
       if (currentGuessNumber >= ANSWER.length) {
         return;
@@ -149,7 +149,7 @@ const Wordle = () => {
       // but if our guess is incorrect, we reset to 0
       setCurrentGuessNumber(0);
     }
-  }, [changed]);
+  }, [changed]); // wow this needs FIXING
 
   function reset() {
     setAttempts(Array(NUM_OF_GUESSES).fill(Array(ANSWER.length).fill("")));

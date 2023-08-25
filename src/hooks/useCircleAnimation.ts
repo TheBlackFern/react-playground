@@ -27,7 +27,7 @@ export function useCircleAnimation(
       }, 400);
       setNextFullRevTime((prev) => prev + 180);
     }
-  }, [angle]);
+  }, [angle, nextFullRevTime, play]);
 
   return [lightUp];
 }

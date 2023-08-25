@@ -7,7 +7,7 @@ const CaptchaWords = () => {
   const [removeButton, setRemoveButton] = React.useState(false);
 
   return (
-    <div className=" font-hanken">
+    <div className="font-hanken">
       <div className="flex w-80 flex-row items-center justify-center gap-4 rounded-xl border-2 p-3">
         <div className="relative flex items-center justify-center">
           <Button
