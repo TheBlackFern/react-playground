@@ -6,13 +6,19 @@ import {
   ResultSummary,
   Rating,
   Wordle,
-  ChessBoard,
-  CaptchaWords,
+  // ChessBoard,
+  Captcha,
   Creation,
   GuessColor,
 } from "../components";
 import { Gem } from "lucide-react";
 import { TComponents } from "../App";
+import Chessground from "@react-chess/chessground";
+import "chessground/assets/chessground.base.css";
+// import "chessground/assets/chessground.brown.css";
+// import "chessground/assets/chessground.cburnett.css";
+import "../assets/chess-pieces.css";
+import "../assets/chess-board.css";
 import { Button } from "../components/ui";
 import _ from "lodash";
 
@@ -20,16 +26,22 @@ import _ from "lodash";
 // otherwise is says that these are properties and doesn't understand
 // that Components[key] is a JSX.Element
 export const Components: { [key: string]: JSX.Element } = {
-  Captcha: <CaptchaWords />,
+  Captcha: <Captcha />,
   "Guess Color": <GuessColor />,
-  Chess: <ChessBoard />,
   Wordle: <Wordle />,
-  "Naughts and Crosses": <NaughtsAndCrossesBoard />,
   Polyrhythms: <PolyrhytmBoard />,
+  "Naughts and Crosses": <NaughtsAndCrossesBoard />,
   "Rock-Paper-Scissors": <RockPaperScissors />,
-  "QR Code": <QRCode />,
-  "Result Summary": <ResultSummary />,
   Rating: <Rating />,
+  "Result Summary": <ResultSummary />,
+  "QR Code": <QRCode />,
+  Chess: (
+    <Chessground
+      width={480}
+      height={480}
+      config={{ movable: { free: true, color: "both" } }}
+    />
+  ),
 };
 
 type CreationsProps = {
@@ -39,7 +51,7 @@ type CreationsProps = {
 
 const Creations = ({ shownComponents, setShownComponents }: CreationsProps) => {
   return (
-    <main className="relative mb-10 flex h-[calc(100vh-7rem)] flex-row flex-wrap justify-center bg-background px-10 pt-5 transition-all duration-300 dark:bg-background">
+    <main className="relative mb-10 flex min-h-[calc(100vh-7rem)] flex-row flex-wrap justify-center bg-background px-10 pt-5 transition-all duration-300 dark:bg-background">
       {Object.values(shownComponents).every((v) => v === false) && (
         <div className="-mt-3 flex flex-col items-center justify-center">
           <p className="flex flex-col font-sans text-[5rem] font-extrabold leading-none tracking-tighter md:flex-row md:gap-3">

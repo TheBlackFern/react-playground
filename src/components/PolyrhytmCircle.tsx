@@ -1,5 +1,6 @@
 import useSound from "use-sound";
-import vibroMap from "../assets/assets";
+import vibroMap from "../assets";
+import { CSSProperties } from "react";
 import { useRotation } from "../hooks/useRotation";
 import { useCircleAnimation } from "../hooks/useCircleAnimation";
 
@@ -42,12 +43,12 @@ const PolyrhytmCircle = ({
   // like w-[`${{orbitRadius * 2 - circleRadius * 2}`px], which is a shame.
   // There may be a workarourd which as of now I'm not aware of, will consider
   // rewriting later.
-  const containerStyle: React.CSSProperties = {
+  const containerStyle: CSSProperties = {
     height: `${orbitRadius * 2 - circleRadius * 2}px`,
     width: `${orbitRadius * 2 - circleRadius * 2}px`,
   };
 
-  const circleStyle: React.CSSProperties = {
+  const circleStyle: CSSProperties = {
     top: `calc(50% - ${circleRadius}px)`,
     left: `calc(50% - ${circleRadius}px)`,
     width: `${circleRadius * 2}px`,

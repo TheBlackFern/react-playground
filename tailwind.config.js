@@ -15,6 +15,10 @@ export default {
       screens: {
         xs: "360px",
       },
+      rotate: {
+        24: "24deg",
+        16: "16deg",
+      },
       colors: {
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",

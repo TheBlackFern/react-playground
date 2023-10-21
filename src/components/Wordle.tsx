@@ -168,7 +168,10 @@ const Wordle = () => {
   return (
     <>
       <div className="relative flex flex-col gap-2">
-        <ResetButton className="-right-10" reset={reset} />
+        <ResetButton
+          className="absolute -right-14 top-1/2 -translate-y-1/2 sm:-right-12"
+          reset={reset}
+        />
         {attempts.map((word, i) => (
           <WordleRow
             word={currentAttemptNumber == i ? currentGuess : word}

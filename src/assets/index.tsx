@@ -46,3 +46,33 @@ vibroMap.set(20, sound20);
 vibroMap.set(21, sound21);
 
 export default vibroMap;
+
+import b from "./images/bb.svg";
+import q from "./images/bq.svg";
+import k from "./images/bk.svg";
+import p from "./images/bp.svg";
+import n from "./images/bn.svg";
+import r from "./images/br.svg";
+import B from "./images/wb.svg";
+import Q from "./images/wq.svg";
+import K from "./images/wk.svg";
+import P from "./images/wp.svg";
+import N from "./images/wn.svg";
+import R from "./images/wr.svg";
+import { Piece } from "../components/ChessBoard";
+
+export const pieceImages: Record<Piece, string> = {
+  "": "",
+  b: b,
+  r: r,
+  n: n,
+  p: p,
+  q: q,
+  k: k,
+  B: B,
+  R: R,
+  N: N,
+  P: P,
+  Q: Q,
+  K: K,
+};
