@@ -1,16 +1,16 @@
-import {
-  NaughtsAndCrossesBoard,
-  PolyrhytmBoard,
-  RockPaperScissors,
-  QRCode,
-  ResultSummary,
-  Rating,
-  Wordle,
-  // ChessBoard,
-  Captcha,
-  Creation,
-  GuessColor,
-} from "../components";
+import { Suspense, lazy } from "react";
+const NaughtsAndCrossesBoard = lazy(
+  () => import("../components/NaughtsAndCrossesBoard")
+);
+const PolyrhytmBoard = lazy(() => import("../components/PolyrhytmBoard"));
+const RockPaperScissors = lazy(() => import("../components/RockPaperScissors"));
+const QRCode = lazy(() => import("../components/QRCode"));
+const ResultSummary = lazy(() => import("../components/ResultSummary"));
+const Rating = lazy(() => import("../components/Rating"));
+const Wordle = lazy(() => import("../components/Wordle"));
+const Captcha = lazy(() => import("../components/Captcha"));
+const Creation = lazy(() => import("../components/Creation"));
+const GuessColor = lazy(() => import("../components/GuessColor"));
 import { Gem } from "lucide-react";
 import { TComponents } from "../App";
 import Chessground from "@react-chess/chessground";
@@ -110,15 +110,17 @@ const Creations = ({ shownComponents, setShownComponents }: CreationsProps) => {
           </div>
         </div>
       )}
-      {Object.keys(shownComponents).map((key) => {
-        return (
-          shownComponents[key] && (
-            <Creation name={key} key={key}>
-              {Components[key]}
-            </Creation>
-          )
-        );
-      })}
+      <Suspense fallback={<p className="text-foreground-muted">Loading...</p>}>
+        {Object.keys(shownComponents).map((key) => {
+          return (
+            shownComponents[key] && (
+              <Creation name={key} key={key}>
+                {Components[key]}
+              </Creation>
+            )
+          );
+        })}
+      </Suspense>
     </main>
   );
 };
