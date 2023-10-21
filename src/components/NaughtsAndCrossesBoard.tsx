@@ -57,7 +57,10 @@ function NaughtsAndCrossesBoard() {
 
   return (
     <div className="relative flex w-40 flex-row gap-3 pl-2">
-      <ResetButton reset={resetBoard} />
+      <ResetButton
+        reset={resetBoard}
+        className="absolute -right-14 top-1/2 -translate-y-1/2 sm:-right-12"
+      />
       <div className={`relative grid grid-cols-3 transition-all duration-300`}>
         <NaughtsAndCrossesTile
           value={values[0]}
