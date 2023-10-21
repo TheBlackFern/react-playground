@@ -1,0 +1,1 @@
+import{j as t}from"./index-9a9909bf.js";const a=({name:e,children:s})=>t.jsxs("div",{className:"mx-5 mb-4 flex w-auto flex-col items-center justify-start gap-4",children:[t.jsxs("h2",{className:"w-auto border-b-2 pb-3 text-center text-2xl font-semibold leading-tight tracking-tighter",children:[e,"!"]}),s]});export{a as default};
